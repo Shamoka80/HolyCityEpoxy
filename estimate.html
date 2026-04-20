@@ -4,38 +4,189 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Estimate | Holy City Epoxy</title>
-    <meta name="description" content="Request a project estimate range for epoxy and concrete coatings in Charleston, SC and surrounding areas." />
+    <meta
+      name="description"
+      content="Request a professional estimate range for garage, porch, and pool deck coatings in Charleston, SC and surrounding areas."
+    />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
-    <header class="site-header"><div class="layout-container header-wrap"><a class="branding" href="index.html">Holy City Epoxy</a><button class="mobile-menu-button" type="button" data-menu-button aria-expanded="false" aria-controls="primary-nav">Menu</button><nav id="primary-nav" class="primary-nav" aria-label="Primary" data-primary-nav><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="estimate.html" aria-current="page">Estimate</a></li><li><a href="service-area.html">Service Area</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html">Contact</a></li></ul></nav></div></header>
+    <header class="site-header">
+      <div class="layout-container header-wrap">
+        <a class="branding" href="index.html">Holy City Epoxy</a>
+        <button class="mobile-menu-button" type="button" data-menu-button aria-expanded="false" aria-controls="primary-nav">Menu</button>
+        <nav id="primary-nav" class="primary-nav" aria-label="Primary" data-primary-nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="estimate.html" aria-current="page">Estimate</a></li>
+            <li><a href="service-area.html">Service Area</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
     <main id="main-content" class="layout-container">
       <section>
-        <h1>Get an Estimate Range</h1>
-        <p>Use this quick form to share your project details. We provide an estimate range now and confirm scope after review.</p>
-        <p class="small-note">Projects under $1,500 are handled with a minimum project message and next-step guidance.</p>
+        <h1>Get Your Estimate Range</h1>
+        <p>
+          Share a few project details and we will provide a consultative price range for planning.
+          Final pricing is confirmed after an on-site review.
+        </p>
       </section>
+
       <section class="card">
-        <form class="form-grid" name="estimate-request" method="POST" data-netlify="true" enctype="multipart/form-data" data-estimate-form>
+        <form
+          class="form-grid"
+          name="estimate-request"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          enctype="multipart/form-data"
+          data-estimate-form
+        >
           <input type="hidden" name="form-name" value="estimate-request" />
-          <div class="form-group"><label for="project-type">Project Type</label><select id="project-type" name="project-type"><option>Garage Coating</option><option>Porch Coating</option><option>Pool Deck Coating</option></select></div>
-          <div class="form-group"><label for="size">Project Size</label><select id="size" name="size"><option>Small</option><option>Medium</option><option>Large</option><option>Custom Square Footage</option></select></div>
-          <div class="form-group"><label for="location-type">Indoor / Outdoor</label><select id="location-type" name="location-type"><option>Indoor</option><option>Outdoor</option></select></div>
-          <div class="form-group"><label for="surface-condition">Surface Condition</label><select id="surface-condition" name="surface-condition"><option>Good</option><option>Minor cracks</option><option>Needs repair</option></select></div>
-          <div class="form-group"><label for="finish-type">Finish Type</label><select id="finish-type" name="finish-type"><option>Solid color</option><option>Decorative flake</option><option>Quartz</option></select></div>
-          <div class="form-group"><label for="timeline">Timeline</label><select id="timeline" name="timeline"><option>ASAP</option><option>Within 30 days</option><option>Just planning</option></select></div>
-          <div class="form-group"><label for="zip">Zip Code</label><input id="zip" name="zip" type="text" autocomplete="postal-code" /></div>
-          <div class="form-group"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" /></div>
-          <div class="form-group"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" /></div>
-          <div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" /></div>
-          <div class="form-group full-width"><label for="photo">Optional Photo Upload</label><input id="photo" name="photo" type="file" accept="image/*" /></div>
-          <div class="form-group full-width"><button class="button button-primary" type="submit">Get Estimate</button></div>
+          <p hidden>
+            <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+          </p>
+
+          <div class="form-group">
+            <label for="project-type">Project Type</label>
+            <select id="project-type" name="project_type" required>
+              <option value="garage">Garage Coating</option>
+              <option value="porch">Porch Coating</option>
+              <option value="pool_deck">Pool Deck Coating</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="size-preset">Project Size</label>
+            <select id="size-preset" name="size_preset" required>
+              <option value="small">Small (up to 300 sq ft)</option>
+              <option value="medium" selected>Medium (301-600 sq ft)</option>
+              <option value="large">Large (601-900 sq ft)</option>
+              <option value="xlarge">Extra Large (901-1,200 sq ft)</option>
+              <option value="custom">Custom Square Footage</option>
+            </select>
+          </div>
+
+          <div class="form-group" data-custom-size-group hidden>
+            <label for="custom-square-feet">Custom Square Footage</label>
+            <input id="custom-square-feet" name="custom_square_feet" type="number" min="100" max="5000" step="10" inputmode="numeric" />
+          </div>
+
+          <div class="form-group">
+            <label for="environment">Indoor / Outdoor</label>
+            <select id="environment" name="environment" required>
+              <option value="indoor">Indoor</option>
+              <option value="outdoor">Outdoor</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="surface-condition">Surface Condition</label>
+            <select id="surface-condition" name="surface_condition" required>
+              <option value="good">Good condition</option>
+              <option value="minor_repairs">Minor repairs needed</option>
+              <option value="moderate_repairs">Moderate preparation needed</option>
+              <option value="extensive_repairs">Extensive repairs likely</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="finish-type">Finish Type</label>
+            <select id="finish-type" name="finish_type" required>
+              <option value="solid">Solid color</option>
+              <option value="decorative_flake" selected>Decorative flake</option>
+              <option value="quartz">Quartz system</option>
+              <option value="premium_uv">Premium UV-stable finish</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="timeline">Preferred Timeline</label>
+            <select id="timeline" name="timeline" required>
+              <option value="asap">As soon as possible</option>
+              <option value="30_days">Within 30 days</option>
+              <option value="60_days">Within 60 days</option>
+              <option value="planning">Just planning ahead</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="zip">Project Zip Code</label>
+            <input id="zip" name="zip_code" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" required />
+          </div>
+
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+
+          <div class="form-group full-width">
+            <label for="photo">Optional Photo Upload</label>
+            <input id="photo" name="project_photo" type="file" accept="image/*" />
+          </div>
+
+          <input type="hidden" name="estimate_range" data-estimate-range-field />
+          <input type="hidden" name="estimate_band" data-estimate-band-field />
+          <input type="hidden" name="travel_note" data-travel-note-field />
+
+          <div class="form-group full-width">
+            <p class="small-note" data-estimate-result aria-live="polite">
+              Select your project details to generate a planning estimate range.
+            </p>
+            <p class="small-note" data-travel-note aria-live="polite"></p>
+          </div>
+
+          <div class="form-group full-width cta-actions">
+            <a class="button button-secondary-dark" href="tel:+18435550199">Call Now</a>
+            <a class="button button-secondary-dark" href="contact.html">Request In-Person Quote</a>
+            <button class="button button-primary" type="submit">Submit Estimate Request</button>
+          </div>
         </form>
-        <p class="small-note" data-estimate-result>Estimator scaffolding is active. Detailed pricing-range logic is coming next.</p>
       </section>
     </main>
-    <footer class="site-footer"><div class="layout-container footer-grid"><section><h2>Holy City Epoxy</h2><p>Charleston, SC epoxy and concrete coating specialist serving homeowners within 40 miles of 29445.</p></section><section><h2>Contact</h2><ul class="footer-list"><li><a href="tel:+18435550199">(843) 555-0199</a></li><li><a href="mailto:hello@holycityepoxy.com">hello@holycityepoxy.com</a></li></ul></section><section><h2>Quick Links</h2><ul class="footer-list"><li><a href="estimate.html">Get Estimate</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul></section></div></footer>
+
+    <footer class="site-footer">
+      <div class="layout-container footer-grid">
+        <section>
+          <h2>Holy City Epoxy</h2>
+          <p>Charleston, SC epoxy and concrete coating specialist serving homeowners within 40 miles of 29445.</p>
+        </section>
+        <section>
+          <h2>Contact</h2>
+          <ul class="footer-list">
+            <li><a href="tel:+18435550199">(843) 555-0199</a></li>
+            <li><a href="mailto:hello@holycityepoxy.com">hello@holycityepoxy.com</a></li>
+          </ul>
+        </section>
+        <section>
+          <h2>Quick Links</h2>
+          <ul class="footer-list">
+            <li><a href="estimate.html">Get Estimate</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </section>
+      </div>
+    </footer>
+
     <script src="assets/js/main.js" defer></script>
     <script src="assets/js/estimate.js" defer></script>
   </body>
