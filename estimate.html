@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Estimate | Holy City Epoxy</title>
-    <meta
-      name="description"
-      content="Request a professional estimate range for garage, porch, and pool deck coatings in Charleston, SC and surrounding areas."
-    />
+    <title>Get Estimate | Charleston Epoxy & Concrete Coatings</title>
+    <meta name="description" content="Request a planning estimate range for Charleston garage, porch, and pool deck coatings. Upload a photo and share your project details online." />
+    <meta property="og:title" content="Get Estimate | Charleston Epoxy & Concrete Coatings" />
+    <meta property="og:description" content="Request a planning estimate range for Charleston garage, porch, and pool deck coatings. Upload a photo and share your project details online." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://holycityepoxy.com/estimate" />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
@@ -43,14 +44,16 @@
       <section class="card">
         <form
           class="form-grid"
-          name="estimate-request"
+          name="estimate-request-form"
           method="POST"
+          action="/thank-you/"
           data-netlify="true"
+          netlify
           netlify-honeypot="bot-field"
           enctype="multipart/form-data"
           data-estimate-form
         >
-          <input type="hidden" name="form-name" value="estimate-request" />
+          <input type="hidden" name="form-name" value="estimate-request-form" />
           <p hidden>
             <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
           </p>
@@ -181,6 +184,7 @@
           <ul class="footer-list">
             <li><a href="estimate.html">Get Estimate</a></li>
             <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </section>
