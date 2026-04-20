@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estimate | Holy City Epoxy</title>
+    <meta name="description" content="Request a project estimate range for epoxy and concrete coatings in Charleston, SC and surrounding areas." />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <header class="site-header"><div class="layout-container header-wrap"><a class="branding" href="index.html">Holy City Epoxy</a><button class="mobile-menu-button" type="button" data-menu-button aria-expanded="false" aria-controls="primary-nav">Menu</button><nav id="primary-nav" class="primary-nav" aria-label="Primary" data-primary-nav><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="estimate.html" aria-current="page">Estimate</a></li><li><a href="service-area.html">Service Area</a></li><li><a href="reviews.html">Reviews</a></li><li><a href="contact.html">Contact</a></li></ul></nav></div></header>
+    <main id="main-content" class="layout-container">
+      <section>
+        <h1>Get an Estimate Range</h1>
+        <p>Use this quick form to share your project details. We provide an estimate range now and confirm scope after review.</p>
+        <p class="small-note">Projects under $1,500 are handled with a minimum project message and next-step guidance.</p>
+      </section>
+      <section class="card">
+        <form class="form-grid" name="estimate-request" method="POST" data-netlify="true" enctype="multipart/form-data" data-estimate-form>
+          <input type="hidden" name="form-name" value="estimate-request" />
+          <div class="form-group"><label for="project-type">Project Type</label><select id="project-type" name="project-type"><option>Garage Coating</option><option>Porch Coating</option><option>Pool Deck Coating</option></select></div>
+          <div class="form-group"><label for="size">Project Size</label><select id="size" name="size"><option>Small</option><option>Medium</option><option>Large</option><option>Custom Square Footage</option></select></div>
+          <div class="form-group"><label for="location-type">Indoor / Outdoor</label><select id="location-type" name="location-type"><option>Indoor</option><option>Outdoor</option></select></div>
+          <div class="form-group"><label for="surface-condition">Surface Condition</label><select id="surface-condition" name="surface-condition"><option>Good</option><option>Minor cracks</option><option>Needs repair</option></select></div>
+          <div class="form-group"><label for="finish-type">Finish Type</label><select id="finish-type" name="finish-type"><option>Solid color</option><option>Decorative flake</option><option>Quartz</option></select></div>
+          <div class="form-group"><label for="timeline">Timeline</label><select id="timeline" name="timeline"><option>ASAP</option><option>Within 30 days</option><option>Just planning</option></select></div>
+          <div class="form-group"><label for="zip">Zip Code</label><input id="zip" name="zip" type="text" autocomplete="postal-code" /></div>
+          <div class="form-group"><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" /></div>
+          <div class="form-group"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" /></div>
+          <div class="form-group"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" /></div>
+          <div class="form-group full-width"><label for="photo">Optional Photo Upload</label><input id="photo" name="photo" type="file" accept="image/*" /></div>
+          <div class="form-group full-width"><button class="button button-primary" type="submit">Get Estimate</button></div>
+        </form>
+        <p class="small-note" data-estimate-result>Estimator scaffolding is active. Detailed pricing-range logic is coming next.</p>
+      </section>
+    </main>
+    <footer class="site-footer"><div class="layout-container footer-grid"><section><h2>Holy City Epoxy</h2><p>Charleston, SC epoxy and concrete coating specialist serving homeowners within 40 miles of 29445.</p></section><section><h2>Contact</h2><ul class="footer-list"><li><a href="tel:+18435550199">(843) 555-0199</a></li><li><a href="mailto:hello@holycityepoxy.com">hello@holycityepoxy.com</a></li></ul></section><section><h2>Quick Links</h2><ul class="footer-list"><li><a href="estimate.html">Get Estimate</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul></section></div></footer>
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/estimate.js" defer></script>
+  </body>
+</html>
