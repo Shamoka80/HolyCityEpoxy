@@ -533,6 +533,75 @@ textarea {
   gap: 1rem;
 }
 
+.gallery-filter-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.gallery-filter-button {
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-muted);
+  font-weight: 700;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+}
+
+.gallery-filter-button:hover,
+.gallery-filter-button:focus-visible,
+.gallery-filter-button.is-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+.gallery-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.gallery-card {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.gallery-card h3 {
+  margin: 0;
+}
+
+.gallery-before-after {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.gallery-before-after figure {
+  margin: 0;
+}
+
+.gallery-image-slot {
+  border: 1px dashed #93a4b7;
+  border-radius: calc(var(--radius) - 0.1rem);
+  min-height: 9.5rem;
+  padding: 0.75rem;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: #496680;
+  background: linear-gradient(140deg, #eef4fb 0%, #dce9f6 100%);
+}
+
+.gallery-before-after figcaption {
+  margin-top: 0.3rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+[data-gallery-hidden='true'] {
+  display: none;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -549,6 +618,14 @@ textarea {
   .split-panel {
     grid-template-columns: 1.35fr 1fr;
     align-items: start;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-before-after {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .project-review-list {
