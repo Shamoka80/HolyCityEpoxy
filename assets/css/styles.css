@@ -467,3 +467,91 @@ textarea {
     grid-column: 1 / -1;
   }
 }
+
+.page-hero {
+  background: linear-gradient(140deg, #0d3e6a 0%, #16558d 70%, #2a6ca7 100%);
+  color: #fff;
+  margin-bottom: 0;
+  padding: 2.5rem 0;
+}
+
+.page-hero-wrap > * {
+  margin-block: 0 1rem;
+}
+
+.page-hero h1 {
+  font-size: clamp(1.75rem, 2.8vw, 2.5rem);
+  line-height: 1.25;
+}
+
+.split-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.feature-list {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.feature-list li {
+  padding-left: 0.15rem;
+}
+
+.emphasis-card {
+  border-left: 0.3rem solid var(--color-accent);
+}
+
+.service-section {
+  border-top: 1px solid #d7e0ea;
+  padding-top: 1rem;
+}
+
+.service-heading-block h2 {
+  margin-bottom: 0.35rem;
+}
+
+.service-heading-block p {
+  margin-top: 0;
+  color: var(--color-muted);
+}
+
+.testimonial-grid {
+  align-items: stretch;
+}
+
+.testimonial-card blockquote {
+  margin: 0;
+  font-style: italic;
+  color: var(--color-text);
+}
+
+.project-review-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (min-width: 48rem) {
+  .split-panel {
+    grid-template-columns: 1.35fr 1fr;
+    align-items: start;
+  }
+
+  .project-review-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
