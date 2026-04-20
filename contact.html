@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact | Holy City Epoxy</title>
-    <meta
-      name="description"
-      content="Call Holy City Epoxy or send a message through our Netlify-compatible contact form for Charleston-area residential coating projects."
-    />
+    <title>Contact Holy City Epoxy | Call or Message Our Charleston Team</title>
+    <meta name="description" content="Call Holy City Epoxy or send a message through our Netlify-compatible contact form for Charleston-area residential coating projects." />
+    <meta property="og:title" content="Contact Holy City Epoxy | Call or Message Our Charleston Team" />
+    <meta property="og:description" content="Call Holy City Epoxy or send a message through our Netlify-compatible contact form for Charleston-area residential coating projects." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://holycityepoxy.com/contact" />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
@@ -75,8 +76,8 @@
           <p>This Netlify-compatible form structure is ready for static form handling.</p>
         </div>
         <article class="card">
-          <form class="form-grid" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="contact" />
+          <form class="form-grid" name="contact-form" method="POST" action="/thank-you/" data-netlify="true" netlify netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact-form" />
             <p class="visually-hidden">
               <label for="bot-field">Do not fill this out if you're human:</label>
               <input id="bot-field" name="bot-field" type="text" />
@@ -147,6 +148,7 @@
           <ul class="footer-list">
             <li><a href="estimate.html">Get Estimate</a></li>
             <li><a href="services.html">Services</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </section>

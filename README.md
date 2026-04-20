@@ -1,13 +1,14 @@
-# Holy City Epoxy Static Website Scaffold
+# Holy City Epoxy Static Website
 
-This repository contains the initial static-first scaffold for a Charleston, SC epoxy and concrete coatings marketing website.
+Lightweight, static-first marketing site for a Charleston, SC residential epoxy and concrete coatings business.
 
-## Tech Stack
+## Stack
 - Plain HTML5 pages
-- Custom CSS (no framework)
+- Custom CSS (no UI framework)
 - Minimal vanilla JavaScript
+- Netlify static hosting + Netlify Forms
 
-## Site Map
+## Site map
 - `index.html` (Home)
 - `about.html`
 - `services.html`
@@ -16,20 +17,22 @@ This repository contains the initial static-first scaffold for a Charleston, SC 
 - `service-area.html`
 - `reviews.html`
 - `contact.html`
+- `thank-you.html`
 
-## Project Structure
+## Project structure
 - `assets/css/styles.css` shared responsive styles
-- `assets/js/main.js` shared lightweight behavior
-- `assets/js/estimate.js` estimator placeholder script
-- `assets/images/` image directory placeholder
+- `assets/js/main.js` shared lightweight navigation + gallery behavior
+- `assets/js/estimate.js` estimate range calculator logic
+- `assets/images/` static image assets
+- `netlify.toml` minimal publish + thank-you redirects
 
-## Notes
-- Shared header, primary navigation, and footer are scaffolded across all pages.
-- Forms are scaffolded for Netlify static form handling (`data-netlify="true"`).
-- Estimator logic intentionally remains placeholder-only in this phase.
+## Netlify deployment notes
+- Both forms are native HTML forms with Netlify attributes (`data-netlify`, `netlify`, honeypot, and hidden `form-name`).
+- Form submissions post to `/thank-you/`, which is redirected to `thank-you.html` through `netlify.toml`.
+- The estimate form supports optional photo upload via `multipart/form-data`.
 
-## Local Preview
-Because this is a static site, any simple local server works:
+## Local preview
+Run a simple local server from repository root:
 
 ```bash
 python3 -m http.server 8080
