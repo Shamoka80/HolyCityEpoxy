@@ -44,7 +44,7 @@
   ctaBar.className = 'mobile-cta';
   ctaBar.setAttribute('aria-label', 'Quick contact actions');
   ctaBar.innerHTML =
-    '<a class="button button-secondary" href="tel:+18435550199">Call Now</a>' +
+    '<a class="button button-secondary" href="tel:+18437903344">Call Now</a>' +
     '<a class="button button-primary" href="estimate.html">Get Estimate</a>';
 
   document.body.append(ctaBar);
