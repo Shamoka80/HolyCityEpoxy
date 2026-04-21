@@ -50,3 +50,54 @@
   document.body.append(ctaBar);
   document.body.classList.add('has-mobile-cta');
 })();
+
+// Lightweight category filtering for the gallery page.
+(function initGalleryFilters() {
+  const filterContainer = document.querySelector('[data-gallery-controls]');
+  const statusNode = document.querySelector('[data-gallery-status]');
+  const galleryCards = Array.from(document.querySelectorAll('[data-gallery-grid] .gallery-card'));
+
+  if (!filterContainer || !statusNode || galleryCards.length === 0) {
+    return;
+  }
+
+  const filterButtons = Array.from(filterContainer.querySelectorAll('[data-filter]'));
+
+  const updateFilter = filterValue => {
+    filterButtons.forEach(button => {
+      const isCurrent = button.getAttribute('data-filter') === filterValue;
+      button.classList.toggle('is-active', isCurrent);
+      button.setAttribute('aria-pressed', String(isCurrent));
+    });
+
+    let visibleCount = 0;
+
+    galleryCards.forEach(card => {
+      const category = card.getAttribute('data-category');
+      const shouldShow = filterValue === 'all' || category === filterValue;
+
+      card.classList.toggle('is-hidden', !shouldShow);
+
+      if (shouldShow) {
+        visibleCount += 1;
+      }
+    });
+
+    const label = filterValue === 'all' ? 'all project categories' : filterValue.replace('-', ' ');
+    statusNode.textContent = `Showing ${visibleCount} project${visibleCount === 1 ? '' : 's'} for ${label}.`;
+  };
+
+  filterContainer.addEventListener('click', event => {
+    const clickTarget = event.target;
+    if (!(clickTarget instanceof HTMLButtonElement)) {
+      return;
+    }
+
+    const filterValue = clickTarget.getAttribute('data-filter');
+    if (!filterValue) {
+      return;
+    }
+
+    updateFilter(filterValue);
+  });
+})();

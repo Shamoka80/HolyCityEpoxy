@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gallery | Holy City Epoxy</title>
-    <meta name="description" content="Browse project examples from Charleston-area garage, porch, and pool deck coating installations." />
+    <meta
+      name="description"
+      content="Browse Charleston-area garage, porch, and pool deck before-and-after coating projects from Holy City Epoxy."
+    />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
@@ -29,34 +32,133 @@
     </header>
 
     <main id="main-content">
-      <section class="page-hero">
+      <section class="page-hero" aria-labelledby="gallery-hero-title">
         <div class="layout-container">
-          <p class="eyebrow">Charleston, SC Residential Coatings</p>
-          <h1>Project Gallery</h1>
-          <p>Visual placeholders for before-and-after transformations across residential projects in Charleston and surrounding communities.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="estimate.html">Get Estimate</a>
-            <a class="button button-secondary" href="tel:+18435550199">Call (843) 555-0199</a>
-          </div>
+          <p class="eyebrow">Charleston, SC Project Results</p>
+          <h1 id="gallery-hero-title">See real-style transformations by project type</h1>
+          <p>
+            Browse representative before-and-after examples for garage, porch, and pool deck projects completed for
+            local homeowners.
+          </p>
         </div>
       </section>
 
-      <section class="content-section" aria-labelledby="featured-transformations">
+      <section class="content-section" aria-labelledby="gallery-filter-title">
         <div class="layout-container">
-          <h2 id="featured-transformations">Featured Transformations</h2>
-          <p>Placeholder image grid for recent project highlights.</p>
+          <h2 id="gallery-filter-title">Project gallery</h2>
+          <p>Use filters to focus on the type of concrete space that matches your home project.</p>
+
+          <div class="gallery-filter-controls" role="toolbar" aria-label="Filter gallery by project type" data-gallery-controls>
+            <button class="gallery-filter-button is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+            <button class="gallery-filter-button" type="button" data-filter="garage" aria-pressed="false">Garage</button>
+            <button class="gallery-filter-button" type="button" data-filter="porch" aria-pressed="false">Porch</button>
+            <button class="gallery-filter-button" type="button" data-filter="pool-deck" aria-pressed="false">Pool Deck</button>
+          </div>
+
+          <div class="gallery-grid" data-gallery-grid>
+            <article class="gallery-card" data-category="garage">
+              <header class="gallery-card-header">
+                <h3>Two-Car Garage Refresh</h3>
+                <span class="gallery-tag">Garage</span>
+              </header>
+              <div class="before-after-pair">
+                <figure>
+                  <div class="image-placeholder" role="img" aria-label="Before image placeholder for two-car garage coating project">Before Image</div>
+                </figure>
+                <figure>
+                  <div class="image-placeholder" role="img" aria-label="After image placeholder for two-car garage coating project">After Image</div>
+                </figure>
+              </div>
+            </article>
+
+            <article class="gallery-card" data-category="garage">
+              <header class="gallery-card-header">
+                <h3>Garage + Workbench Upgrade</h3>
+                <span class="gallery-tag">Garage</span>
+              </header>
+              <div class="before-after-pair">
+                <figure>
+                  <div class="image-placeholder" role="img" aria-label="Before image placeholder for garage workbench area">Before Image</div>
+                </figure>
+                <figure>
+                  <div class="image-placeholder" role="img" aria-label="After image placeholder for garage workbench area">After Image</div>
+                </figure>
+              </div>
+            </article>
+
+            <article class="gallery-card" data-category="porch">
+              <header class="gallery-card-header">
+                <h3>Front Entry Porch Makeover</h3>
+                <span class="gallery-tag">Porch</span>
+              </header>
+              <div class="before-after-pair">
+                <figure>
+                  <div class="image-placeholder" role="img" aria-label="Before image placeholder for front porch coating project">Before Image</div>
+                </figure>
+                <figure>
+                  <div class="image-placeholder" role="img" aria-label="After image placeholder for front porch coating project">After Image</div>
+                </figure>
+              </div>
+            </article>
+
+            <article class="gallery-card" data-category="porch">
+              <header class="gallery-card-header">
+                <h3>Covered Back Porch Update</h3>
+                <span class="gallery-tag">Porch</span>
+              </header>
+              <div class="before-after-pair">
+                <figure>
+                  <div class="image-placeholder" role="img" aria-label="Before image placeholder for covered back porch">Before Image</div>
+                </figure>
+                <figure>
+                  <div class="image-placeholder" role="img" aria-label="After image placeholder for covered back porch">After Image</div>
+                </figure>
+              </div>
+            </article>
+
+            <article class="gallery-card" data-category="pool-deck">
+              <header class="gallery-card-header">
+                <h3>Family Pool Deck Renewal</h3>
+                <span class="gallery-tag">Pool Deck</span>
+              </header>
+              <div class="before-after-pair">
+                <figure>
+                  <div class="image-placeholder" role="img" aria-label="Before image placeholder for family pool deck">Before Image</div>
+                </figure>
+                <figure>
+                  <div class="image-placeholder" role="img" aria-label="After image placeholder for family pool deck">After Image</div>
+                </figure>
+              </div>
+            </article>
+
+            <article class="gallery-card" data-category="pool-deck">
+              <header class="gallery-card-header">
+                <h3>Pool Lounge Area Upgrade</h3>
+                <span class="gallery-tag">Pool Deck</span>
+              </header>
+              <div class="before-after-pair">
+                <figure>
+                  <div class="image-placeholder" role="img" aria-label="Before image placeholder for pool lounge area">Before Image</div>
+                </figure>
+                <figure>
+                  <div class="image-placeholder" role="img" aria-label="After image placeholder for pool lounge area">After Image</div>
+                </figure>
+              </div>
+            </article>
+          </div>
+
+          <p class="gallery-results-note" data-gallery-status aria-live="polite">Showing all project categories.</p>
         </div>
       </section>
-      <section class="content-section" aria-labelledby="by-project-type">
-        <div class="layout-container">
-          <h2 id="by-project-type">By Project Type</h2>
-          <p>Placeholder filtered layout for garage, porch, and pool deck categories.</p>
-        </div>
-      </section>
-      <section class="content-section" aria-labelledby="ready-for-your-project">
-        <div class="layout-container">
-          <h2 id="ready-for-your-project">Ready for Your Project?</h2>
-          <p>Placeholder CTA directing visitors to call or request an estimate.</p>
+
+      <section class="content-section" aria-labelledby="gallery-cta-title">
+        <div class="layout-container cta-panel cta-panel-dark">
+          <h2 id="gallery-cta-title">Ready to transform your concrete space?</h2>
+          <p>Tell us about your project goals and get a professional price range for your home.</p>
+          <div class="hero-actions hero-actions-equal" role="group" aria-label="Gallery call to action options">
+            <a class="button button-primary button-equal" href="estimate.html">Get Estimate</a>
+            <a class="button button-secondary button-equal" href="tel:+18435550199">Call Now</a>
+          </div>
         </div>
       </section>
     </main>
@@ -82,6 +184,5 @@
     </footer>
 
     <script src="assets/js/main.js" defer></script>
-    
   </body>
 </html>
