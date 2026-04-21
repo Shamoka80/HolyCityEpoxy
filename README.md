@@ -1,41 +1,20 @@
-# Holy City Epoxy Static Website
+# Holy City Epoxy Static Site Scaffold
 
-Lightweight, static-first marketing site for a Charleston, SC residential epoxy and concrete coatings business.
+This repository contains the initial static-site scaffold for a Charleston, SC epoxy and concrete coatings contractor website.
 
-## Stack
-- Plain HTML5 pages
-- Custom CSS (no UI framework)
-- Minimal vanilla JavaScript
-- Netlify static hosting + Netlify Forms
+## Architecture
+- Plain HTML pages for each core route in the site map.
+- Shared custom CSS in `assets/css/styles.css` for responsive layout and UI consistency.
+- Minimal JavaScript in `assets/js/main.js` (mobile navigation) and `assets/js/estimate.js` (estimator scaffold placeholder).
+- Static-first structure designed for lightweight hosting and SEO-friendly markup.
 
-## Site map
-- `index.html` (Home)
-- `about.html`
-- `services.html`
-- `gallery.html`
-- `estimate.html`
-- `service-area.html`
-- `reviews.html`
-- `contact.html`
-- `thank-you.html`
-
-## Project structure
-- `assets/css/styles.css` shared responsive styles
-- `assets/js/main.js` shared lightweight navigation + gallery behavior
-- `assets/js/estimate.js` estimate range calculator logic
-- `assets/images/` static image assets
-- `netlify.toml` minimal publish configuration
-
-## Netlify deployment notes
-- Both forms are native HTML forms with Netlify attributes (`data-netlify`, `netlify`, honeypot, and hidden `form-name`).
-- Form submissions post to `/thank-you`, which resolves to `thank-you.html` via Netlify pretty URLs.
-- The estimate form supports optional photo upload via `multipart/form-data`.
-
-## Local preview
-Run a simple local server from repository root:
-
-```bash
-python3 -m http.server 8080
-```
-
-Then open `http://localhost:8080`.
+## Pages
+- Home (`index.html`)
+- About (`about.html`)
+- Services (`services.html`)
+- Gallery (`gallery.html`)
+- Estimate (`estimate.html`)
+- Service Area (`service-area.html`)
+- Reviews (`reviews.html`)
+- Contact (`contact.html`)
+- Thank You (`thank-you.html`)
