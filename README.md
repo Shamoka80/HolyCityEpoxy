@@ -24,11 +24,11 @@ Lightweight, static-first marketing site for a Charleston, SC residential epoxy 
 - `assets/js/main.js` shared lightweight navigation + gallery behavior
 - `assets/js/estimate.js` estimate range calculator logic
 - `assets/images/` static image assets
-- `netlify.toml` minimal publish + thank-you redirects
+- `netlify.toml` minimal publish configuration
 
 ## Netlify deployment notes
 - Both forms are native HTML forms with Netlify attributes (`data-netlify`, `netlify`, honeypot, and hidden `form-name`).
-- Form submissions post to `/thank-you/`, which is redirected to `thank-you.html` through `netlify.toml`.
+- Form submissions post to `/thank-you`, which resolves to `thank-you.html` via Netlify pretty URLs.
 - The estimate form supports optional photo upload via `multipart/form-data`.
 
 ## Local preview
