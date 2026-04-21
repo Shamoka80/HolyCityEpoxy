@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reviews | Holy City Epoxy</title>
-    <meta name="description" content="Customer reviews and testimonials for Holy City Epoxy in Charleston, SC." />
+    <meta
+      name="description"
+      content="Read homeowner testimonials for garage, porch, and pool deck coating projects completed by Holy City Epoxy in Charleston, SC."
+    />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
@@ -29,34 +32,99 @@
     </header>
 
     <main id="main-content">
-      <section class="page-hero">
+      <section class="page-hero" aria-labelledby="reviews-hero-title">
         <div class="layout-container">
-          <p class="eyebrow">Charleston, SC Residential Coatings</p>
-          <h1>Homeowner Reviews</h1>
-          <p>Placeholder testimonial sections for real homeowner feedback about project quality, communication, and finished results.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="estimate.html">Get Estimate</a>
-            <a class="button button-secondary" href="tel:+18435550199">Call (843) 555-0199</a>
+          <p class="eyebrow">Charleston, SC Homeowner Feedback</p>
+          <h1 id="reviews-hero-title">Reviews focused on trust, workmanship, and customer care</h1>
+          <p>
+            We prioritize clean prep, clear communication, and durable finished surfaces. Here are example review
+            formats for recent residential garage, porch, and pool deck projects.
+          </p>
+          <div class="hero-actions hero-actions-equal" role="group" aria-label="Reviews page call to action options">
+            <a class="button button-primary button-equal" href="estimate.html">Get Estimate</a>
+            <a class="button button-secondary button-equal" href="tel:+18435550199">Call Now</a>
           </div>
         </div>
       </section>
 
-      <section class="content-section" aria-labelledby="featured-testimonials">
+      <section class="content-section" aria-labelledby="testimonial-grid-title">
         <div class="layout-container">
-          <h2 id="featured-testimonials">Featured Testimonials</h2>
-          <p>Placeholder cards for recent customer quotes and outcomes.</p>
+          <h2 id="testimonial-grid-title">Homeowner testimonials</h2>
+          <div class="review-grid">
+            <article class="review-card">
+              <p class="review-quote">
+                “Our garage went from stained concrete to a clean, bright space we are proud to use every day. The team
+                was on time and professional from start to finish.”
+              </p>
+              <p class="review-meta"><strong>— Erin</strong> · Garage Coating · Goose Creek</p>
+            </article>
+            <article class="review-card">
+              <p class="review-quote">
+                “They walked us through options clearly and never pressured us. The porch finish looks excellent and has
+                held up through heavy rain and daily use.”
+              </p>
+              <p class="review-meta"><strong>— J.T.</strong> · Porch Coating · Summerville</p>
+            </article>
+            <article class="review-card">
+              <p class="review-quote">
+                “The pool deck now looks updated and feels safer for the kids. Communication was great and the work area
+                was left tidy.”
+              </p>
+              <p class="review-meta"><strong>— Alicia</strong> · Pool Deck Coating · Mount Pleasant</p>
+            </article>
+            <article class="review-card">
+              <p class="review-quote">
+                “We appreciated the detailed prep process and realistic timeline. The final result matched exactly what
+                we discussed during consultation.”
+              </p>
+              <p class="review-meta"><strong>— M.R.</strong> · Garage Coating · North Charleston</p>
+            </article>
+            <article class="review-card">
+              <p class="review-quote">
+                “From estimate through completion, everything felt organized and professional. Our back porch looks like
+                a completely new part of the home.”
+              </p>
+              <p class="review-meta"><strong>— Paula</strong> · Porch Coating · Hanahan</p>
+            </article>
+            <article class="review-card">
+              <p class="review-quote">
+                “Fast replies, clear expectations, and quality work. We would recommend Holy City Epoxy to any
+                homeowner looking for a long-term coating upgrade.”
+              </p>
+              <p class="review-meta"><strong>— D.S.</strong> · Pool Deck Coating · Ladson</p>
+            </article>
+          </div>
         </div>
       </section>
-      <section class="content-section" aria-labelledby="project-highlights">
+
+      <section class="content-section" aria-labelledby="project-linked-title">
         <div class="layout-container">
-          <h2 id="project-highlights">Project Highlights</h2>
-          <p>Placeholder snippets aligned to garage, porch, and pool deck services.</p>
+          <h2 id="project-linked-title">Project-linked review highlights</h2>
+          <div class="card-grid">
+            <article class="card">
+              <h3>Garage System Install</h3>
+              <p>Homeowners highlight cleaner appearance, easier maintenance, and improved storage usability.</p>
+            </article>
+            <article class="card">
+              <h3>Porch Refresh Project</h3>
+              <p>Reviews often mention curb appeal improvement and confidence in weather-resistant performance.</p>
+            </article>
+            <article class="card">
+              <h3>Pool Deck Renewal</h3>
+              <p>Families value a refreshed look, dependable prep, and a process that respects their schedule.</p>
+            </article>
+          </div>
         </div>
       </section>
-      <section class="content-section" aria-labelledby="leave-feedback">
-        <div class="layout-container">
-          <h2 id="leave-feedback">Leave Feedback</h2>
-          <p>Placeholder CTA encouraging post-project review submissions.</p>
+
+      <section class="content-section" aria-labelledby="reviews-cta-title">
+        <div class="layout-container cta-panel cta-panel-dark">
+          <h2 id="reviews-cta-title">Ready to start your own project?</h2>
+          <p>Get a consultative estimate range or call now to discuss your home project goals.</p>
+          <div class="hero-actions hero-actions-equal" role="group" aria-label="Final reviews page call to action">
+            <a class="button button-primary button-equal" href="estimate.html">Get Estimate</a>
+            <a class="button button-secondary button-equal" href="tel:+18435550199">Call Now</a>
+          </div>
         </div>
       </section>
     </main>
@@ -82,6 +150,5 @@
     </footer>
 
     <script src="assets/js/main.js" defer></script>
-    
   </body>
 </html>

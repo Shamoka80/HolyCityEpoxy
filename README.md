@@ -1,14 +1,15 @@
-# Holy City Epoxy Static Site Scaffold
+# Holy City Epoxy Static Site
 
-This repository contains the initial static-site scaffold for a Charleston, SC epoxy and concrete coatings contractor website.
+Lightweight, static-first marketing site for a Charleston, SC residential epoxy and concrete coatings business.
 
-## Architecture
-- Plain HTML pages for each core route in the site map.
-- Shared custom CSS in `assets/css/styles.css` for responsive layout and UI consistency.
-- Minimal JavaScript in `assets/js/main.js` (mobile navigation) and `assets/js/estimate.js` (estimator scaffold placeholder).
-- Static-first structure designed for lightweight hosting and SEO-friendly markup.
+## Stack
+- Plain HTML pages for all public routes
+- Shared CSS in `assets/css/styles.css`
+- Minimal JavaScript in:
+  - `assets/js/main.js` (navigation + gallery filtering)
+  - `assets/js/estimate.js` (client-side consultative estimate range logic)
 
-## Pages
+## Key Pages
 - Home (`index.html`)
 - About (`about.html`)
 - Services (`services.html`)
@@ -18,3 +19,8 @@ This repository contains the initial static-site scaffold for a Charleston, SC e
 - Reviews (`reviews.html`)
 - Contact (`contact.html`)
 - Thank You (`thank-you.html`)
+
+## Netlify Deployment Notes
+- Static publish directory is repository root (`.`), configured in `netlify.toml`.
+- `contact.html` and `estimate.html` forms are Netlify Forms compatible (`data-netlify="true"`, hidden `form-name`, honeypot field).
+- Both forms submit to `/thank-you.html` for a lightweight confirmation flow.
