@@ -250,10 +250,6 @@ img {
   font-size: 0.95rem;
 }
 
-.section-shell {
-  padding: var(--section-space) 0 0;
-}
-
 .content-section {
   padding: var(--section-space) 0 0;
 }
@@ -292,6 +288,20 @@ img {
 
 .card p {
   margin: 0;
+}
+
+.internal-link-grid {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.internal-link-grid .card {
+  text-decoration: none;
+}
+
+.internal-link-grid .card:hover h3 {
+  color: var(--primary);
 }
 
 .before-after-grid {
