@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Estimate | Holy City Epoxy</title>
-    <meta name="description" content="Request a planning estimate range for your Charleston epoxy or concrete coating project." />
+    <meta
+      name="description"
+      content="Request a consultative project estimate range for garage, porch, and pool deck coatings in Charleston, SC."
+    />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
@@ -29,51 +32,145 @@
     </header>
 
     <main id="main-content">
-      <section class="page-hero">
+      <section class="page-hero" aria-labelledby="estimate-hero-title">
         <div class="layout-container">
-          <p class="eyebrow">Charleston, SC Residential Coatings</p>
-          <h1>Request a Planning Estimate</h1>
-          <p>Complete this form to share project scope and receive a professional price range. Final pricing is confirmed after on-site review.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="estimate.html">Get Estimate</a>
-            <a class="button button-secondary" href="tel:+18435550199">Call (843) 555-0199</a>
+          <p class="eyebrow">Consultative Project Planning</p>
+          <h1 id="estimate-hero-title">Request a professional price range for your coating project</h1>
+          <p>
+            This planning tool provides a non-binding investment range only. Final pricing is confirmed after project
+            review and site conditions are verified.
+          </p>
+          <div class="hero-actions hero-actions-equal" role="group" aria-label="Estimate page action options">
+            <a class="button button-primary button-equal" href="tel:+18435550199">Call Now</a>
+            <a class="button button-secondary button-equal" href="#estimate-form">Request In-Person Quote</a>
           </div>
         </div>
       </section>
 
-      <section class="content-section" aria-labelledby="estimate-form-heading">
+      <section class="content-section" aria-labelledby="estimate-form-title">
         <div class="layout-container">
-          <h2 id="estimate-form-heading">Estimate Request Form</h2>
-          <form class="stacked-form" name="estimate-request" method="post" action="thank-you.html" data-estimate-form>
-            <p class="form-note">This is an initial scaffold only; pricing logic and validation will be implemented in a later phase.</p>
-            <div class="form-grid">
-              <label>Project Type<select name="project_type"><option>Garage</option><option>Porch</option><option>Pool Deck</option></select></label>
-              <label>Size<select name="size"><option>Small</option><option>Medium</option><option>Large</option><option>Custom</option></select></label>
-              <label>Custom Square Feet<input type="number" name="custom_square_feet" min="1" /></label>
-              <label>Indoor/Outdoor<select name="environment"><option>Indoor</option><option>Outdoor</option></select></label>
-              <label>Surface Condition<select name="surface_condition"><option>Good</option><option>Minor Repairs</option><option>Moderate Repairs</option><option>Extensive Repairs</option></select></label>
-              <label>Finish Type<select name="finish_type"><option>Solid</option><option>Decorative Flake</option><option>Quartz</option><option>Premium UV</option></select></label>
-              <label>Timeline<select name="timeline"><option>ASAP</option><option>Within 30 Days</option><option>Within 60 Days</option><option>Planning Ahead</option></select></label>
-              <label>ZIP Code<input type="text" name="zip" inputmode="numeric" /></label>
-              <label>Name<input type="text" name="name" /></label>
-              <label>Phone<input type="tel" name="phone" /></label>
-              <label>Email<input type="email" name="email" /></label>
-              <label>Project Photo (Optional)<input type="file" name="photo" accept="image/*" /></label>
+          <h2 id="estimate-form-title">Estimate request</h2>
+          <form
+            id="estimate-form"
+            class="stacked-form"
+            name="estimate-consultative-request"
+            method="post"
+            action="/thank-you.html"
+            enctype="multipart/form-data"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            data-estimate-form
+          >
+            <input type="hidden" name="form-name" value="estimate-consultative-request" />
+            <p class="visually-hidden">
+              <label>Do not fill this out if you're human: <input name="bot-field" /></label>
+            </p>
+
+            <fieldset class="form-step">
+              <legend>Step 1: Project details</legend>
+              <div class="form-grid">
+                <label for="project-type">Project Type
+                  <select id="project-type" name="project_type" required>
+                    <option value="">Select one</option>
+                    <option value="garage">Garage</option>
+                    <option value="porch">Porch</option>
+                    <option value="pool-deck">Pool Deck</option>
+                  </select>
+                </label>
+
+                <label for="size-preset">Size Preset
+                  <select id="size-preset" name="size_preset" required>
+                    <option value="">Select one</option>
+                    <option value="small">Small (up to 300 sq ft)</option>
+                    <option value="medium">Medium (301–600 sq ft)</option>
+                    <option value="large">Large (601–1000 sq ft)</option>
+                    <option value="custom">Custom Square Footage</option>
+                  </select>
+                </label>
+
+                <label for="custom-square-feet">Custom Square Footage
+                  <input id="custom-square-feet" name="custom_square_feet" type="number" min="50" step="10" inputmode="numeric" disabled />
+                </label>
+
+                <label for="environment">Indoor / Outdoor
+                  <select id="environment" name="environment" required>
+                    <option value="">Select one</option>
+                    <option value="indoor">Indoor</option>
+                    <option value="outdoor">Outdoor</option>
+                  </select>
+                </label>
+
+                <label for="surface-condition">Surface Condition
+                  <select id="surface-condition" name="surface_condition" required>
+                    <option value="">Select one</option>
+                    <option value="good">Good</option>
+                    <option value="minor-repairs">Minor Repairs</option>
+                    <option value="moderate-repairs">Moderate Repairs</option>
+                    <option value="extensive-repairs">Extensive Repairs</option>
+                  </select>
+                </label>
+
+                <label for="finish-type">Finish Type
+                  <select id="finish-type" name="finish_type" required>
+                    <option value="">Select one</option>
+                    <option value="solid">Solid Color</option>
+                    <option value="decorative-flake">Decorative Flake</option>
+                    <option value="quartz">Quartz Blend</option>
+                    <option value="premium-uv">Premium UV-Stable System</option>
+                  </select>
+                </label>
+
+                <label for="timeline">Timeline
+                  <select id="timeline" name="timeline" required>
+                    <option value="">Select one</option>
+                    <option value="asap">ASAP</option>
+                    <option value="within-30">Within 30 Days</option>
+                    <option value="within-60">Within 60 Days</option>
+                    <option value="planning">Planning Ahead</option>
+                  </select>
+                </label>
+
+                <label for="zip-code">ZIP Code
+                  <input id="zip-code" name="zip_code" type="text" inputmode="numeric" minlength="5" maxlength="5" pattern="[0-9]{5}" required />
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-step">
+              <legend>Step 2: Contact details</legend>
+              <div class="form-grid">
+                <label for="full-name">Name
+                  <input id="full-name" name="name" type="text" autocomplete="name" required />
+                </label>
+                <label for="phone">Phone
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+                </label>
+                <label for="email">Email
+                  <input id="email" name="email" type="email" autocomplete="email" required />
+                </label>
+                <label for="photo">Project Photo (Optional)
+                  <input id="photo" name="project_photo" type="file" accept="image/*" />
+                </label>
+              </div>
+            </fieldset>
+
+            <input type="hidden" name="estimate_low" value="" data-estimate-low />
+            <input type="hidden" name="estimate_high" value="" data-estimate-high />
+            <input type="hidden" name="estimate_display" value="" data-estimate-display />
+            <input type="hidden" name="estimate_note" value="" data-estimate-note />
+            <input type="hidden" name="travel_note" value="" data-travel-note />
+
+            <div class="estimate-result" aria-live="polite" data-estimate-output>
+              Fill in project details to preview a planning price range.
             </div>
-            <button class="button button-primary" type="submit">Submit Estimate Request</button>
+
+            <button class="button button-primary" type="submit">Submit Request</button>
           </form>
-        </div>
-      </section>
-      <section class="content-section" aria-labelledby="minimum-investment-note">
-        <div class="layout-container">
-          <h2 id="minimum-investment-note">Minimum Investment Note</h2>
-          <p>Placeholder message explaining that projects under $1,500 receive guidance instead of a hard rejection.</p>
-        </div>
-      </section>
-      <section class="content-section" aria-labelledby="service-area-note">
-        <div class="layout-container">
-          <h2 id="service-area-note">Service Area Note</h2>
-          <p>Placeholder note for areas outside 40 miles of 29445 where a small travel fee may apply.</p>
+
+          <p class="service-reminder">
+            Most projects are professionally installed above a $1,500 investment range due to preparation and coating
+            system requirements.
+          </p>
         </div>
       </section>
     </main>

@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact | Holy City Epoxy</title>
-    <meta name="description" content="Contact Holy City Epoxy for residential concrete coating projects in Charleston, SC." />
+    <meta
+      name="description"
+      content="Call or message Holy City Epoxy for residential garage, porch, and pool deck coating projects in Charleston, SC."
+    />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
@@ -29,34 +32,54 @@
     </header>
 
     <main id="main-content">
-      <section class="page-hero">
+      <section class="page-hero" aria-labelledby="contact-hero-title">
         <div class="layout-container">
           <p class="eyebrow">Charleston, SC Residential Coatings</p>
-          <h1>Contact Holy City Epoxy</h1>
-          <p>Reach us by phone or form. We keep communication straightforward and respond quickly to qualified residential projects.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="estimate.html">Get Estimate</a>
-            <a class="button button-secondary" href="tel:+18435550199">Call (843) 555-0199</a>
+          <h1 id="contact-hero-title">Talk with a local coating specialist</h1>
+          <p>
+            Phone is the fastest way to reach us. If you prefer, send a quick message and we will follow up with next
+            steps for your home project.
+          </p>
+          <div class="hero-actions hero-actions-equal" role="group" aria-label="Contact page action options">
+            <a class="button button-secondary button-equal" href="tel:+18435550199">Call Now</a>
+            <a class="button button-primary button-equal" href="estimate.html">Get Estimate</a>
           </div>
         </div>
       </section>
 
-      <section class="content-section" aria-labelledby="call-or-message">
+      <section class="content-section" aria-labelledby="contact-form-title">
         <div class="layout-container">
-          <h2 id="call-or-message">Call or Message</h2>
-          <p>Placeholder contact methods with equal emphasis on phone and estimate request.</p>
-        </div>
-      </section>
-      <section class="content-section" aria-labelledby="contact-form-scaffold">
-        <div class="layout-container">
-          <h2 id="contact-form-scaffold">Contact Form Scaffold</h2>
-          <p>Placeholder form structure compatible with static hosting workflows.</p>
-        </div>
-      </section>
-      <section class="content-section" aria-labelledby="business-details">
-        <div class="layout-container">
-          <h2 id="business-details">Business Details</h2>
-          <p>Placeholder service area, hours, and response expectations.</p>
+          <h2 id="contact-form-title">Send a message</h2>
+          <form class="stacked-form" name="contact-homeowner-request" method="post" action="/thank-you.html" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact-homeowner-request" />
+            <p class="visually-hidden">
+              <label>Do not fill this out if you're human: <input name="bot-field" /></label>
+            </p>
+            <div class="form-grid">
+              <label for="contact-name">Name
+                <input id="contact-name" name="name" type="text" autocomplete="name" required />
+              </label>
+              <label for="contact-phone">Phone
+                <input id="contact-phone" name="phone" type="tel" autocomplete="tel" required />
+              </label>
+              <label for="contact-email">Email
+                <input id="contact-email" name="email" type="email" autocomplete="email" required />
+              </label>
+              <label for="contact-project-type">Project Type
+                <select id="contact-project-type" name="project_type" required>
+                  <option value="">Select one</option>
+                  <option value="Garage">Garage</option>
+                  <option value="Porch">Porch</option>
+                  <option value="Pool Deck">Pool Deck</option>
+                </select>
+              </label>
+              <label class="form-full" for="contact-message">Message
+                <textarea id="contact-message" name="message" required placeholder="Share your project goals, current condition, and timeline."></textarea>
+              </label>
+            </div>
+            <button class="button button-primary" type="submit">Submit Message</button>
+          </form>
+          <p class="service-reminder">Service area: Charleston, SC and surrounding communities within 40 miles of 29445.</p>
         </div>
       </section>
     </main>
@@ -82,6 +105,5 @@
     </footer>
 
     <script src="assets/js/main.js" defer></script>
-    
   </body>
 </html>

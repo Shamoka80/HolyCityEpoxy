@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thank You | Holy City Epoxy</title>
-    <meta name="description" content="Thank-you confirmation page for form submissions to Holy City Epoxy." />
+    <meta name="description" content="Submission confirmation for Holy City Epoxy. Thank you for reaching out." />
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
@@ -29,34 +29,29 @@
     </header>
 
     <main id="main-content">
-      <section class="page-hero">
+      <section class="page-hero" aria-labelledby="thank-you-title">
         <div class="layout-container">
-          <p class="eyebrow">Charleston, SC Residential Coatings</p>
-          <h1>Thank You</h1>
-          <p>We received your submission and will follow up soon with next steps.</p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="estimate.html">Get Estimate</a>
-            <a class="button button-secondary" href="tel:+18435550199">Call (843) 555-0199</a>
+          <p class="eyebrow">Submission Received</p>
+          <h1 id="thank-you-title">Thank you — we have your request</h1>
+          <p>
+            A local team member will review your submission and follow up soon. Most homeowners hear back quickly with
+            next-step guidance.
+          </p>
+          <div class="hero-actions hero-actions-equal" role="group" aria-label="Thank-you page action options">
+            <a class="button button-primary button-equal" href="index.html">Return Home</a>
+            <a class="button button-secondary button-equal" href="tel:+18435550199">Call Now</a>
           </div>
         </div>
       </section>
 
-      <section class="content-section" aria-labelledby="what-happens-next">
-        <div class="layout-container">
-          <h2 id="what-happens-next">What Happens Next</h2>
-          <p>Placeholder expectations for response timing and consultation process.</p>
-        </div>
-      </section>
-      <section class="content-section" aria-labelledby="need-immediate-help">
-        <div class="layout-container">
-          <h2 id="need-immediate-help">Need Immediate Help?</h2>
-          <p>Placeholder direct-call CTA for urgent scheduling questions.</p>
-        </div>
-      </section>
-      <section class="content-section" aria-labelledby="return-to-site">
-        <div class="layout-container">
-          <h2 id="return-to-site">Return to Site</h2>
-          <p>Placeholder quick links back to services, gallery, and home.</p>
+      <section class="content-section" aria-labelledby="next-steps-title">
+        <div class="layout-container cta-panel">
+          <h2 id="next-steps-title">What happens next</h2>
+          <ul class="service-detail-list">
+            <li>We review your project details and confirm service-area fit.</li>
+            <li>We reach out to discuss goals, surface condition, and preferred timeline.</li>
+            <li>We provide clear next steps for consultation and in-person quote planning.</li>
+          </ul>
         </div>
       </section>
     </main>
@@ -82,6 +77,5 @@
     </footer>
 
     <script src="assets/js/main.js" defer></script>
-    
   </body>
 </html>
