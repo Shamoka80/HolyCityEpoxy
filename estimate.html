@@ -63,7 +63,7 @@
             class="stacked-form"
             name="estimate-consultative-request"
             method="post"
-            action="/thank-you.html"
+            action="/thank-you"
             enctype="multipart/form-data"
             data-netlify="true"
             netlify-honeypot="bot-field"
@@ -82,26 +82,49 @@
                     <option value="">Select one</option>
                     <option value="garage">Garage</option>
                     <option value="porch">Porch</option>
-                    <option value="pool-deck">Pool Deck</option>
+                    <option value="pool_deck">Pool Deck</option>
                   </select>
                 </label>
 
-                <label for="size-preset">Size Preset
-                  <select id="size-preset" name="size_preset" required>
+                <label for="size-mode">Size Input Method
+                  <select id="size-mode" name="size_mode" required>
                     <option value="">Select one</option>
-                    <option value="small">Small (up to 300 sq ft)</option>
-                    <option value="medium">Medium (301–600 sq ft)</option>
-                    <option value="large">Large (601–1000 sq ft)</option>
-                    <option value="custom">Custom Square Footage</option>
+                    <option value="preset">Use a preset size</option>
+                    <option value="custom">Enter custom square footage</option>
+                  </select>
+                </label>
+
+                <label for="preset-size">Preset Size
+                  <select id="preset-size" name="preset_size" required>
+                    <option value="">Select one</option>
+                    <option value="garage_1_car">1-Car Garage</option>
+                    <option value="garage_2_car">2-Car Garage</option>
+                    <option value="garage_3_car">3-Car Garage</option>
+                    <option value="porch_small">Small Porch</option>
+                    <option value="porch_medium">Medium Porch</option>
+                    <option value="porch_large">Large Porch</option>
+                    <option value="pool_deck_small">Small Pool Deck</option>
+                    <option value="pool_deck_medium">Medium Pool Deck</option>
+                    <option value="pool_deck_large">Large Pool Deck</option>
                   </select>
                 </label>
 
                 <label for="custom-square-feet">Custom Square Footage
-                  <input id="custom-square-feet" name="custom_square_feet" type="number" min="50" step="10" inputmode="numeric" disabled />
+                  <input
+                    id="custom-square-feet"
+                    name="custom_square_feet"
+                    type="number"
+                    min="1"
+                    step="1"
+                    inputmode="numeric"
+                    disabled
+                    aria-describedby="custom-square-feet-note"
+                  />
                 </label>
+                <p id="custom-square-feet-note" class="form-note">Used only when “Enter custom square footage” is selected.</p>
 
-                <label for="environment">Indoor / Outdoor
-                  <select id="environment" name="environment" required>
+                <label for="environment-type">Indoor / Outdoor
+                  <select id="environment-type" name="environment_type" required>
                     <option value="">Select one</option>
                     <option value="indoor">Indoor</option>
                     <option value="outdoor">Outdoor</option>
@@ -112,19 +135,17 @@
                   <select id="surface-condition" name="surface_condition" required>
                     <option value="">Select one</option>
                     <option value="good">Good</option>
-                    <option value="minor-repairs">Minor Repairs</option>
-                    <option value="moderate-repairs">Moderate Repairs</option>
-                    <option value="extensive-repairs">Extensive Repairs</option>
+                    <option value="fair">Fair</option>
+                    <option value="poor">Poor</option>
                   </select>
                 </label>
 
                 <label for="finish-type">Finish Type
                   <select id="finish-type" name="finish_type" required>
                     <option value="">Select one</option>
-                    <option value="solid">Solid Color</option>
-                    <option value="decorative-flake">Decorative Flake</option>
-                    <option value="quartz">Quartz Blend</option>
-                    <option value="premium-uv">Premium UV-Stable System</option>
+                    <option value="standard">Standard</option>
+                    <option value="enhanced">Enhanced</option>
+                    <option value="premium">Premium</option>
                   </select>
                 </label>
 
@@ -132,15 +153,36 @@
                   <select id="timeline" name="timeline" required>
                     <option value="">Select one</option>
                     <option value="asap">ASAP</option>
-                    <option value="within-30">Within 30 Days</option>
-                    <option value="within-60">Within 60 Days</option>
+                    <option value="within_30">Within 30 Days</option>
+                    <option value="within_60">Within 60 Days</option>
                     <option value="planning">Planning Ahead</option>
                   </select>
                 </label>
 
-                <label for="zip-code">ZIP Code
-                  <input id="zip-code" name="zip_code" type="text" inputmode="numeric" minlength="5" maxlength="5" pattern="[0-9]{5}" required />
+                <label class="form-full" for="project-address">Project Address
+                  <input
+                    id="project-address"
+                    name="project_address"
+                    type="text"
+                    autocomplete="street-address"
+                    required
+                  />
                 </label>
+
+                <label for="zip-code">ZIP Code
+                  <input
+                    id="zip-code"
+                    name="zip_code"
+                    type="text"
+                    inputmode="numeric"
+                    minlength="5"
+                    maxlength="5"
+                    pattern="[0-9]{5}"
+                    required
+                    aria-describedby="zip-code-note"
+                  />
+                </label>
+                <p id="zip-code-note" class="form-note">Use a 5-digit ZIP code so service-area notes can be shown accurately.</p>
               </div>
             </fieldset>
 
@@ -162,17 +204,28 @@
               </div>
             </fieldset>
 
-            <input type="hidden" name="estimate_low" value="" data-estimate-low />
-            <input type="hidden" name="estimate_high" value="" data-estimate-high />
-            <input type="hidden" name="estimate_display" value="" data-estimate-display />
-            <input type="hidden" name="estimate_note" value="" data-estimate-note />
-            <input type="hidden" name="travel_note" value="" data-travel-note />
+            <input type="hidden" name="estimate_range_low" value="" data-estimate-range-low />
+            <input type="hidden" name="estimate_range_high" value="" data-estimate-range-high />
+            <input type="hidden" name="estimate_range_display" value="" data-estimate-range-display />
+            <input type="hidden" name="estimate_project_type" value="" data-estimate-project-type />
+            <input type="hidden" name="estimate_size_mode" value="" data-estimate-size-mode />
+            <input type="hidden" name="estimate_size_value_sqft" value="" data-estimate-size-value-sqft />
+            <input type="hidden" name="estimate_finish_type" value="" data-estimate-finish-type />
+            <input type="hidden" name="estimate_surface_condition" value="" data-estimate-surface-condition />
+            <input type="hidden" name="estimate_timeline" value="" data-estimate-timeline />
+            <input type="hidden" name="estimate_zip" value="" data-estimate-zip />
+            <input type="hidden" name="estimate_minimum_threshold_triggered" value="false" data-estimate-minimum-threshold-triggered />
+            <input type="hidden" name="estimate_travel_note_triggered" value="false" data-estimate-travel-note-triggered />
+            <input type="hidden" name="estimate_disclaimer_version" value="" data-estimate-disclaimer-version />
 
             <div class="estimate-result" aria-live="polite" data-estimate-output>
               Fill in project details to preview a planning price range.
             </div>
 
-            <button class="button button-primary" type="submit">Submit Request</button>
+            <div class="hero-actions hero-actions-equal" role="group" aria-label="Estimate form actions">
+              <button class="button button-secondary button-equal" type="button" data-estimate-preview>Preview Budget Range</button>
+              <button class="button button-primary button-equal" type="submit">Request In-Person Quote</button>
+            </div>
           </form>
 
           <p class="service-reminder">
