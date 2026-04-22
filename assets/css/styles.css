@@ -760,6 +760,16 @@ body.has-mobile-cta {
   margin: 0;
 }
 
+.before-after-pair img,
+.image-placeholder--media {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: contain;
+  border-radius: calc(var(--radius-md) - 0.2rem);
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
+}
+
 .before-after-pair figcaption {
   margin-top: 0.45rem;
   color: var(--muted);
@@ -780,8 +790,8 @@ body.has-mobile-cta {
 }
 
 .image-placeholder--media {
-  width: 100%;
-  aspect-ratio: 16 / 10;
+  display: grid;
+  place-items: center;
 }
 
 .gallery-results-note {
