@@ -106,7 +106,8 @@
     estimateZip: form.querySelector('[data-estimate-zip]'),
     estimateMinimumThresholdTriggered: form.querySelector('[data-estimate-minimum-threshold-triggered]'),
     estimateTravelNoteTriggered: form.querySelector('[data-estimate-travel-note-triggered]'),
-    estimateDisclaimerVersion: form.querySelector('[data-estimate-disclaimer-version]')
+    estimateDisclaimerVersion: form.querySelector('[data-estimate-disclaimer-version]'),
+    estimateDisclaimerText: form.querySelector('[data-estimate-disclaimer-text]')
   };
 
   const formatCurrency = value =>
@@ -150,6 +151,7 @@
     hiddenFields.estimateMinimumThresholdTriggered.value = payload.estimateMinimumThresholdTriggered || 'false';
     hiddenFields.estimateTravelNoteTriggered.value = payload.estimateTravelNoteTriggered || 'false';
     hiddenFields.estimateDisclaimerVersion.value = payload.estimateDisclaimerVersion || '';
+    hiddenFields.estimateDisclaimerText.value = payload.estimateDisclaimerText || '';
   };
 
   const clearEstimateState = () => {
@@ -310,7 +312,8 @@
       estimateZip: values.zipCode,
       estimateMinimumThresholdTriggered: String(thresholdTriggered),
       estimateTravelNoteTriggered: String(travelTriggered),
-      estimateDisclaimerVersion: ESTIMATE_DISCLAIMER_VERSION
+      estimateDisclaimerVersion: ESTIMATE_DISCLAIMER_VERSION,
+      estimateDisclaimerText: ESTIMATE_DISCLAIMER_TEXT
     });
 
     return true;
