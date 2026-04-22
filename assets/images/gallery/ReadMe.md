@@ -4,18 +4,18 @@ All gallery image placeholders currently use a **3:2 landscape ratio** with exac
 
 ## Required files and exact dimensions
 
-- `garage_before.jpg` — **1200 × 800 px**
-- `garage_after.jpg` — **1200 × 800 px**
-- `garage_workbench_before.jpg` — **1200 × 800 px**
-- `garage_workbench_after.jpg` — **1200 × 800 px**
-- `porch_before.jpg` — **1200 × 800 px**
-- `porch_after.jpg` — **1200 × 800 px**
-- `back_porch_before.jpg` — **1200 × 800 px**
-- `back_porch_after.jpg` — **1200 × 800 px**
-- `pool_deck_before.jpg` — **1200 × 800 px**
-- `pool_deck_after.jpg` — **1200 × 800 px**
-- `pool_lounge_before.jpg` — **1200 × 800 px** (placeholder text indicates this image still needs replacement)
-- `pool_lounge_after.jpg` — **1200 × 800 px** (placeholder text indicates this image still needs replacement)
+- `garage_before.jpeg` — **1200 × 800 px**
+- `garage_after.jpeg` — **1200 × 800 px**
+- `garage_workbench_before.png` — **1200 × 800 px**
+- `garage_workbench_after.png` — **1200 × 800 px**
+- `porch_before.png` — **1200 × 800 px**
+- `porch_after.png` — **1200 × 800 px**
+- `back_porch_before.png` — **1200 × 800 px**
+- `back_porch_after.png` — **1200 × 800 px**
+- `pool_deck_before.png` — **1200 × 800 px**
+- `pool_deck_after.png` — **1200 × 800 px**
+- `pool_lounge_before.png` — **1200 × 800 px**
+- `pool_lounge_after.png` — **1200 × 800 px**
 
 ## Application locations
 
