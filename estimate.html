@@ -16,7 +16,7 @@
     <meta property="og:url" content="https://holycityepoxy.com/estimate.html" />
     <meta property="og:site_name" content="Holy City Epoxy" />
     <meta name="twitter:card" content="summary" />
-    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="assets/css/styles.min.css" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -68,6 +68,8 @@
             data-netlify="true"
             netlify-honeypot="bot-field"
             data-estimate-form
+            data-validate-form
+            novalidate
           >
             <input type="hidden" name="form-name" value="estimate-consultative-request" />
             <p class="visually-hidden">
@@ -193,7 +195,7 @@
                   <input id="full-name" name="name" type="text" autocomplete="name" required />
                 </label>
                 <label for="phone">Phone
-                  <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+                  <input id="phone" name="phone" type="tel" autocomplete="tel" pattern="[0-9]{10}" inputmode="numeric" required />
                 </label>
                 <label for="email">Email
                   <input id="email" name="email" type="email" autocomplete="email" required />
@@ -222,6 +224,8 @@
             <div class="estimate-result" aria-live="polite" data-estimate-output>
               Fill in project details to preview a planning price range.
             </div>
+            <div class="form-alert" data-form-summary aria-live="polite" hidden></div>
+            <div class="form-alert form-alert-success" data-form-success aria-live="polite" hidden></div>
 
             <div class="hero-actions hero-actions-equal" role="group" aria-label="Estimate form actions">
               <button class="button button-secondary button-equal" type="button" data-estimate-preview>Preview Budget Range</button>
@@ -288,7 +292,7 @@
       </div>
     </footer>
 
-    <script src="assets/js/main.js" defer></script>
-    <script src="assets/js/estimate.js" defer></script>
+    <script src="assets/js/main.min.js" defer></script>
+    <script src="assets/js/estimate.min.js" defer></script>
   </body>
 </html>
