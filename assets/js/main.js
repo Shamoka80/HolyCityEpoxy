@@ -87,6 +87,8 @@ function initGalleryFilters() {
 function initValidatedForms() {
   const forms = Array.from(document.querySelectorAll('[data-validate-form]'));
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const allowedUploadMimeTypes = new Set(['image/jpeg', 'image/png']);
+  const allowedUploadExtensions = /\.(jpe?g|png)$/i;
 
   const getErrorNode = input => {
     let errorNode = input.parentElement?.querySelector('.field-error');
@@ -115,7 +117,7 @@ function initValidatedForms() {
 
   const validateInput = input => {
     clearFieldError(input);
-    const value = input.value.trim();
+    const value = input.type === 'file' ? input.value : input.value.trim();
 
     if (input.required && !value) {
       setFieldError(input, 'This field is required.');
@@ -140,6 +142,16 @@ function initValidatedForms() {
       }
     }
 
+    if (input.type === 'file' && input.files && input.files.length > 0) {
+      const file = input.files[0];
+      const matchesMimeType = file.type ? allowedUploadMimeTypes.has(file.type) : false;
+      const matchesExtension = allowedUploadExtensions.test(file.name);
+      if (!matchesMimeType && !matchesExtension) {
+        setFieldError(input, 'Upload a JPG or PNG image.');
+        return false;
+      }
+    }
+
     return true;
   };
 
@@ -147,7 +159,7 @@ function initValidatedForms() {
     const summary = form.querySelector('[data-form-summary]');
     const successNode = form.querySelector('[data-form-success]');
     const fields = Array.from(form.querySelectorAll('input, select, textarea')).filter(
-      input => input.name && input.type !== 'hidden' && input.type !== 'file'
+      input => input.name && input.type !== 'hidden'
     );
 
     fields.forEach(input => {
@@ -179,8 +191,7 @@ function initValidatedForms() {
       try {
         const response = await fetch('/', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(formData).toString()
+          body: formData
         });
 
         if (!response.ok) throw new Error('Request failed');
