@@ -1,8 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
+  initPreferredPngImages();
   initLayoutInteractions();
   initGalleryFilters();
   initValidatedForms();
 });
+
+function initPreferredPngImages() {
+  const svgImages = Array.from(document.querySelectorAll('img[src$=".svg"]'));
+  if (!svgImages.length) return;
+
+  svgImages.forEach(image => {
+    const currentSrc = image.getAttribute('src');
+    if (!currentSrc) return;
+
+    const pngSrc = currentSrc.replace(/\.svg$/i, '.png');
+    const preload = new Image();
+
+    preload.addEventListener('load', () => {
+      image.src = pngSrc;
+    });
+
+    preload.src = pngSrc;
+  });
+}
 
 function initLayoutInteractions() {
   const menuButton = document.querySelector('[data-menu-button]');
