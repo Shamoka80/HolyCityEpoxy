@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="mapTitle mapDesc">
+<title id="mapTitle">Service area map around ZIP code 29445</title>
+<desc id="mapDesc">Static map-style illustration centered on Goose Creek, South Carolina with an approximate 40-mile service radius.</desc>
+<rect width="1200" height="800" fill="#dbeafe"/>
+<path d="M80 160 L260 120 L390 190 L540 170 L650 220 L760 190 L910 260 L1070 220 L1120 390 L1010 500 L880 520 L760 610 L580 560 L430 620 L280 560 L190 450 L90 360 Z" fill="#bfdbfe" stroke="#93c5fd" stroke-width="6"/>
+<circle cx="620" cy="390" r="240" fill="#f59e0b33" stroke="#b45309" stroke-width="6"/>
+<circle cx="620" cy="390" r="10" fill="#b91c1c"/>
+<text x="640" y="382" font-family="Arial, sans-serif" font-size="28" fill="#0f172a" font-weight="700">ZIP 29445</text>
+<text x="640" y="416" font-family="Arial, sans-serif" font-size="24" fill="#334155">Goose Creek, SC</text>
+<text x="620" y="700" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#0f172a" font-weight="700">Approximate 40-mile service radius</text>
+</svg>
