@@ -73,8 +73,13 @@ function initGalleryFilters() {
   };
 
   filterContainer.addEventListener('click', event => {
-    if (!(event.target instanceof HTMLButtonElement)) return;
-    const filterValue = event.target.getAttribute('data-filter');
+    const target = event.target;
+    if (!(target instanceof Element)) return;
+
+    const button = target.closest('button[data-filter]');
+    if (!(button instanceof HTMLButtonElement)) return;
+
+    const filterValue = button.getAttribute('data-filter');
     if (filterValue) updateFilter(filterValue);
   });
 }
