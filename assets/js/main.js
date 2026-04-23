@@ -144,7 +144,8 @@ function initGalleryMediaPreferences() {
       if (!(gifMedia instanceof HTMLImageElement)) return;
 
       const gifSrc = gifMedia.getAttribute('data-gallery-gif');
-      if (!gifSrc) return;
+      const staticSrc = gifMedia.getAttribute('data-gallery-static');
+      if (!gifSrc || !staticSrc) return;
 
       const showFallbackPair = () => {
         if (fallbackPair instanceof HTMLElement) fallbackPair.hidden = false;
@@ -157,13 +158,17 @@ function initGalleryMediaPreferences() {
       };
 
       if (mediaQuery.matches) {
+        if (gifMedia.src !== staticSrc) gifMedia.src = staticSrc;
         showFallbackPair();
         return;
       }
 
       showGif();
       gifMedia.removeEventListener('error', showFallbackPair);
-      gifMedia.addEventListener('error', showFallbackPair, { once: true });
+      gifMedia.addEventListener('error', () => {
+        gifMedia.src = staticSrc;
+        showFallbackPair();
+      }, { once: true });
 
       if (gifMedia.src !== gifSrc) {
         gifMedia.src = gifSrc;

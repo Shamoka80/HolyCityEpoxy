@@ -16,7 +16,7 @@
     <meta property="og:url" content="https://holycityepoxy.com/" />
     <meta property="og:site_name" content="Holy City Epoxy" />
     <meta name="twitter:card" content="summary" />
-    <link rel="stylesheet" href="assets/css/styles.min.css" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -72,16 +72,46 @@
           <div class="before-after-grid">
             <article class="proof-card">
               <h3>Garage Floor Before &amp; After</h3>
-              <figure>
-                <img src="assets/images/gallery/garage_after.jpeg" loading="lazy" alt="Two car garage floor after professional epoxy coating with bright finish" width="1200" height="800" />
-              </figure>
+              <div class="gallery-media-frame" data-gallery-media>
+                <figure>
+                  <img
+                    src="assets/images/gallery/garage.gif"
+                    data-gallery-gif="assets/images/gallery/garage.gif"
+                    data-gallery-static="assets/images/gallery/garage_after.jpeg"
+                    loading="lazy"
+                    alt="Animated garage floor before-and-after transformation from stained concrete to a bright epoxy finish"
+                    width="1200"
+                    height="800"
+                  />
+                </figure>
+                <div class="gallery-static-fallback" data-gallery-fallback hidden>
+                  <figure>
+                    <img src="assets/images/gallery/garage_after.jpeg" loading="lazy" alt="Two-car garage floor after epoxy installation with a clean reflective finish" width="1200" height="800" />
+                  </figure>
+                </div>
+              </div>
               <p>Turn a dusty storage zone into a clean, bright garage that is easier to maintain.</p>
             </article>
             <article class="proof-card">
               <h3>Pool Deck Before &amp; After</h3>
-              <figure>
-                <img src="assets/images/gallery/pool_deck_after.png" loading="lazy" alt="Residential pool deck after coating installation with refreshed texture" width="1200" height="800" />
-              </figure>
+              <div class="gallery-media-frame" data-gallery-media>
+                <figure>
+                  <img
+                    src="assets/images/gallery/pool_deck.gif"
+                    data-gallery-gif="assets/images/gallery/pool_deck.gif"
+                    data-gallery-static="assets/images/gallery/pool_deck_after.png"
+                    loading="lazy"
+                    alt="Animated pool deck before-and-after transformation showing a renewed outdoor surface"
+                    width="1200"
+                    height="800"
+                  />
+                </figure>
+                <div class="gallery-static-fallback" data-gallery-fallback hidden>
+                  <figure>
+                    <img src="assets/images/gallery/pool_deck_after.png" loading="lazy" alt="Pool deck after protective coating installation with refreshed texture" width="1200" height="800" />
+                  </figure>
+                </div>
+              </div>
               <p>Refresh weathered outdoor concrete with a finish designed for family use and curb appeal.</p>
             </article>
           </div>
@@ -194,6 +224,6 @@
       </div>
     </footer>
 
-    <script src="assets/js/main.min.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
   </body>
 </html>
