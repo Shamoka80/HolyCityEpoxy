@@ -289,6 +289,7 @@ img {
   color: #991b1b;
   font-size: 0.9rem;
   font-weight: 600;
+  line-height: 1.4;
 }
 
 .is-invalid {
@@ -620,6 +621,11 @@ body.has-mobile-cta {
   .form-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .service-area-list {
+    columns: 2;
+    gap: 1.5rem;
+  }
 }
 
 @media (min-width: 52rem) {
@@ -719,8 +725,8 @@ body.has-mobile-cta {
 .service-area-list {
   margin: 0.65rem 0 0;
   padding-left: 1.1rem;
-  columns: 2;
-  gap: 1.5rem;
+  columns: 1;
+  gap: 1rem;
 }
 
 .service-area-list li {
@@ -756,9 +762,10 @@ body.has-mobile-cta {
 
 .gallery-card-header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.7rem;
+  flex-wrap: wrap;
 }
 
 .gallery-tag {
@@ -784,7 +791,8 @@ body.has-mobile-cta {
 .image-placeholder--media {
   width: 100%;
   aspect-ratio: 16 / 10;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
   border-radius: calc(var(--radius-md) - 0.2rem);
   border: 1px solid var(--border);
   background: var(--surface-muted);
