@@ -49,14 +49,54 @@ function initLayoutInteractions() {
   const siteNav = document.querySelector('[data-site-nav]');
 
   if (menuButton && siteNav) {
+    const desktopMedia = window.matchMedia('(min-width: 52rem)');
+    const inertRegions = Array.from(document.querySelectorAll('main, footer, .mobile-cta'));
+    let focusableMenuItems = [];
+
+    const getFocusLoopNodes = () =>
+      [menuButton, ...focusableMenuItems].filter(node => node instanceof HTMLElement && !node.hasAttribute('disabled'));
+
+    const setInertState = isInert => {
+      inertRegions.forEach(region => {
+        if (!(region instanceof HTMLElement)) return;
+        if ('inert' in region) {
+          region.inert = isInert;
+          return;
+        }
+
+        if (isInert) {
+          region.setAttribute('aria-hidden', 'true');
+        } else {
+          region.removeAttribute('aria-hidden');
+        }
+      });
+    };
+
     const closeMenu = () => {
+      const wasOpen = siteNav.classList.contains('is-open');
+      if (!wasOpen) return;
       siteNav.classList.remove('is-open');
       menuButton.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('menu-open');
+      setInertState(false);
+      menuButton.focus();
     };
 
     menuButton.addEventListener('click', () => {
       const isOpen = siteNav.classList.toggle('is-open');
       menuButton.setAttribute('aria-expanded', String(isOpen));
+      document.body.classList.toggle('menu-open', isOpen);
+
+      if (isOpen && !desktopMedia.matches) {
+        focusableMenuItems = Array.from(siteNav.querySelectorAll('a[href], button:not([disabled])'));
+        setInertState(true);
+        if (focusableMenuItems[0] instanceof HTMLElement) {
+          focusableMenuItems[0].focus();
+        }
+        return;
+      }
+
+      setInertState(false);
     });
 
     siteNav.addEventListener('click', event => {
@@ -64,7 +104,34 @@ function initLayoutInteractions() {
     });
 
     document.addEventListener('keydown', event => {
-      if (event.key === 'Escape') closeMenu();
+      const menuIsOpen = siteNav.classList.contains('is-open');
+      if (!menuIsOpen) return;
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closeMenu();
+        return;
+      }
+
+      if (event.key !== 'Tab' || desktopMedia.matches) return;
+
+      const loopNodes = getFocusLoopNodes();
+      if (!loopNodes.length) return;
+
+      const firstNode = loopNodes[0];
+      const lastNode = loopNodes[loopNodes.length - 1];
+      const activeNode = document.activeElement;
+
+      if (event.shiftKey && activeNode === firstNode) {
+        event.preventDefault();
+        lastNode.focus();
+        return;
+      }
+
+      if (!event.shiftKey && activeNode === lastNode) {
+        event.preventDefault();
+        firstNode.focus();
+      }
     });
 
     document.addEventListener('click', event => {
@@ -73,9 +140,11 @@ function initLayoutInteractions() {
       if (!clickTarget.closest('.site-header')) closeMenu();
     });
 
-    const desktopMedia = window.matchMedia('(min-width: 52rem)');
     const syncNavState = event => {
-      if (event.matches) closeMenu();
+      if (event.matches) {
+        closeMenu();
+        setInertState(false);
+      }
     };
     syncNavState(desktopMedia);
     desktopMedia.addEventListener('change', syncNavState);
@@ -287,18 +356,29 @@ function initValidatedForms() {
       if (invalidFields.length) {
         event.preventDefault();
         if (summary) {
+          const summaryItems = invalidFields
+            .map(field => {
+              const fieldId = field.id;
+              const labelNode = fieldId ? form.querySelector(`label[for="${fieldId}"]`) : null;
+              const fieldLabel = labelNode?.childNodes[0]?.textContent?.trim() || field.name || 'Required field';
+              if (!fieldId) return `<li>${fieldLabel}</li>`;
+              return `<li><a href="#${fieldId}" data-error-target="${fieldId}">${fieldLabel}</a></li>`;
+            })
+            .join('');
+
           summary.hidden = false;
-          summary.textContent = `Please correct ${invalidFields.length} field${invalidFields.length === 1 ? '' : 's'} before submitting.`;
+          summary.innerHTML =
+            `<p>Please complete or correct the following ${invalidFields.length} field${invalidFields.length === 1 ? '' : 's'}:</p>` +
+            `<ul>${summaryItems}</ul>`;
           summary.setAttribute('tabindex', '-1');
           summary.focus();
         }
-        invalidFields[0].focus();
         return;
       }
 
       if (summary) {
         summary.hidden = true;
-        summary.textContent = '';
+        summary.innerHTML = '';
       }
 
       event.preventDefault();
@@ -332,5 +412,21 @@ function initValidatedForms() {
         }
       }
     });
+
+    if (summary) {
+      summary.addEventListener('click', event => {
+        const clickTarget = event.target;
+        if (!(clickTarget instanceof HTMLAnchorElement)) return;
+
+        const targetId = clickTarget.getAttribute('data-error-target');
+        if (!targetId) return;
+
+        const targetField = form.querySelector(`#${targetId}`);
+        if (!(targetField instanceof HTMLElement)) return;
+
+        event.preventDefault();
+        targetField.focus();
+      });
+    }
   });
 }
