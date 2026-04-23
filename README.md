@@ -26,7 +26,13 @@ Lightweight, static-first marketing site for a Charleston, SC residential epoxy 
 - `assets/css/styles.css`: global responsive styles, form/layout components, and lightweight utility patterns.
 - `assets/js/main.js`: shared mobile navigation, mobile CTA bar, and gallery filtering behavior.
 - `assets/js/estimate.js`: client-side estimator range logic and hidden-field sync for Netlify form submissions.
+- `scripts/generate-gallery-gifs.php`: local-only generator for before/after gallery GIFs (writes to `assets/images/generated/`).
 - `netlify.toml`: publish configuration for static deployment at repository root.
+
+## Gallery GIF Workflow (PR-safe)
+- Generated GIF binaries are intentionally **not** committed in this repository workflow.
+- Gallery supports generated GIFs when present, with static before/after fallback if GIFs do not exist.
+- See `docs/gif-generation-workflow.md` for prerequisites, naming rules, commands, output path, and fallback behavior.
 
 ## Netlify Deployment Notes
 - Static publish directory is repository root (`.`), configured in `netlify.toml`.

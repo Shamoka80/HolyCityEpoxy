@@ -781,18 +781,46 @@ body.has-mobile-cta {
   margin-top: 0.8rem;
   display: grid;
   gap: 0.7rem;
+  align-items: start;
 }
 
 .before-after-pair figure {
   margin: 0;
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
 }
 
 .before-after-pair img,
 .image-placeholder--media {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: center;
+  border-radius: calc(var(--radius-md) - 0.2rem);
+  border: 1px solid var(--border);
+  background: var(--surface-muted);
+}
+
+.gallery-card {
+  display: grid;
+  align-content: start;
+}
+
+.gallery-media-frame {
+  margin-top: 0.8rem;
+}
+
+.gallery-media-frame figure {
+  margin: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.gallery-media-frame img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
   border-radius: calc(var(--radius-md) - 0.2rem);
   border: 1px solid var(--border);
   background: var(--surface-muted);

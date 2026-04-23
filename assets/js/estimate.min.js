@@ -70,18 +70,18 @@
       key: 'fair_distance',
       label: 'Fair-Distance Zone',
       fee: 49,
-      creditNote: '$49 trip & evaluation fee is credited back when booking any project.',
+      creditNote: '$49 fee is credited when booking.',
       details:
-        'For projects 20 to 40 miles from 29445, we apply a $49 trip and evaluation fee with same-day or next-day estimate availability when scheduling allows.',
+        'For projects 20 to 40 miles from 29445, a $49 fee applies and is credited when booking.',
       virtualEstimateRequired: false
     },
     premium: {
       key: 'premium_out_of_area',
       label: 'Premium Out-of-Area Zone',
       fee: 99,
-      creditNote: '$99 distance fee is credited toward projects over $1,000.',
+      creditNote: '$99 fee is credited when booking.',
       details:
-        'For projects beyond 40 miles from 29445, a virtual estimate is required first and a $99 distance fee applies for on-site evaluation.',
+        'For projects beyond 40 miles from 29445, virtual estimate first, then a $99 fee applies and is credited when booking.',
       virtualEstimateRequired: true
     }
   };
