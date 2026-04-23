@@ -257,22 +257,22 @@ img[width][height] {
 
 .button-secondary {
   border-color: rgb(255 255 255 / 0.75);
-  color: #fff;
-  background: transparent;
+  color: var(--primary);
+  background: #fff;
 }
 
 .button-secondary:hover {
-  background: rgb(255 255 255 / 0.13);
+  background: #f1f5f9;
 }
 
 .content-section .button-secondary {
   color: var(--primary);
   border-color: rgb(18 62 104 / 0.35);
-  background: transparent;
+  background: #fff;
 }
 
 .content-section .button-secondary:hover {
-  background: rgb(18 62 104 / 0.07);
+  background: var(--surface-muted);
 }
 
 .trust-strip {
@@ -506,10 +506,11 @@ img[width][height] {
 .cta-panel-dark .button-secondary {
   border-color: rgb(255 255 255 / 0.75);
   color: #fff;
+  background: #1c588e;
 }
 
 .cta-panel-dark .button-secondary:hover {
-  background: rgb(255 255 255 / 0.13);
+  background: #174a79;
 }
 
 .stacked-form {
