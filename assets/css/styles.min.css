@@ -176,28 +176,39 @@ img[width][height] {
 
 .page-hero {
   color: #fff;
-  padding: clamp(3rem, 7vw, 5.5rem) 0;
+  padding-block: clamp(2.75rem, 8vw, 5rem);
+  min-height: clamp(15.5rem, 36vw, 20.5rem);
+  display: flex;
+  align-items: center;
   background: linear-gradient(135deg, #0c2b48, #123e68 50%, #1c588e);
 }
 
+.page-hero .layout-container {
+  display: grid;
+  gap: clamp(0.65rem, 1.8vw, 1rem);
+}
+
 .page-hero h1 {
-  margin: 0.65rem 0 0.9rem;
+  margin: 0;
   max-width: 24ch;
-  font-size: clamp(1.8rem, 5vw, 2.7rem);
-  line-height: 1.15;
+  font-size: clamp(1.9rem, 4.5vw, 2.75rem);
+  line-height: 1.2;
 }
 
 .page-hero p {
   margin: 0;
   color: rgb(241 245 249 / 0.97);
   max-width: 65ch;
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.6;
 }
 
 .eyebrow {
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.09em;
-  font-size: 0.75rem;
+  font-size: clamp(0.75rem, 1.4vw, 0.9rem);
+  line-height: 1.35;
   font-weight: 700;
   color: rgb(252 211 77 / 0.95);
 }
@@ -205,8 +216,9 @@ img[width][height] {
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
+  align-items: stretch;
   gap: 0.75rem;
-  margin-top: 1.3rem;
+  margin-top: clamp(0.15rem, 0.8vw, 0.45rem);
 }
 
 .hero-actions-equal .button-equal {
