@@ -140,39 +140,32 @@ function initGalleryMediaPreferences() {
     mediaContainers.forEach(container => {
       const gifFigure = container.querySelector('figure');
       const gifMedia = container.querySelector('[data-gallery-gif][data-gallery-static]');
-      const fallbackPair = container.querySelector('[data-gallery-fallback]');
       if (!(gifMedia instanceof HTMLImageElement)) return;
 
       const gifSrc = gifMedia.getAttribute('data-gallery-gif');
       const staticSrc = gifMedia.getAttribute('data-gallery-static');
       if (!gifSrc || !staticSrc) return;
 
-      const showFallbackPair = () => {
-        if (fallbackPair instanceof HTMLElement) fallbackPair.hidden = false;
-        if (gifFigure instanceof HTMLElement) gifFigure.hidden = true;
+      // Keep a single image in each card and swap sources based on user motion preference.
+      const showStaticImage = () => {
+        if (gifFigure instanceof HTMLElement) gifFigure.hidden = false;
+        if (gifMedia.src !== staticSrc) gifMedia.src = staticSrc;
       };
 
-      const showGif = () => {
-        if (fallbackPair instanceof HTMLElement) fallbackPair.hidden = true;
+      const showGifImage = () => {
         if (gifFigure instanceof HTMLElement) gifFigure.hidden = false;
+        if (gifMedia.src !== gifSrc) gifMedia.src = gifSrc;
       };
 
       if (mediaQuery.matches) {
-        if (gifMedia.src !== staticSrc) gifMedia.src = staticSrc;
-        showFallbackPair();
+        showStaticImage();
         return;
       }
 
-      showGif();
-      gifMedia.removeEventListener('error', showFallbackPair);
+      showGifImage();
       gifMedia.addEventListener('error', () => {
-        gifMedia.src = staticSrc;
-        showFallbackPair();
+        showStaticImage();
       }, { once: true });
-
-      if (gifMedia.src !== gifSrc) {
-        gifMedia.src = gifSrc;
-      }
     });
   };
 
