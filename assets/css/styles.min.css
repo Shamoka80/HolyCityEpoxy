@@ -44,6 +44,10 @@ img {
   display: block;
 }
 
+img[width][height] {
+  height: auto;
+}
+
 .service-area-map {
   border-radius: var(--radius-md);
   border: 1px solid var(--border);
@@ -636,6 +640,7 @@ body.has-mobile-cta {
   .site-nav {
     display: block;
     position: static;
+    flex: 1 1 auto;
   }
 
   .site-nav ul {
@@ -643,6 +648,7 @@ body.has-mobile-cta {
     display: flex;
     flex-wrap: wrap;
     gap: 0.15rem;
+    justify-content: flex-end;
   }
 
   .site-nav a {
@@ -815,6 +821,10 @@ body.has-mobile-cta {
   margin: 0;
   display: grid;
   gap: 0.45rem;
+}
+
+.gallery-static-fallback figure {
+  margin: 0;
 }
 
 .gallery-media-frame img {
