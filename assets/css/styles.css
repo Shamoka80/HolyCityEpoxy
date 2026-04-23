@@ -181,25 +181,25 @@ img[width][height] {
 }
 
 .page-hero .layout-container {
-  min-height: clamp(16.5rem, 34vw, 20rem);
+  min-height: clamp(20rem, 44vw, 23rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: clamp(0.6rem, 1.2vw, 0.9rem);
+  gap: clamp(0.65rem, 1.1vw, 0.85rem);
 }
 
 .page-hero h1 {
   margin: 0;
   max-width: 24ch;
-  font-size: clamp(1.75rem, 3.2vw, 2.4rem);
+  font-size: clamp(1.7rem, 2.8vw, 2.25rem);
   line-height: 1.2;
 }
 
 .page-hero p {
   margin: 0;
   color: rgb(241 245 249 / 0.97);
-  max-width: 63ch;
-  font-size: clamp(1rem, 1.25vw, 1.0625rem);
+  max-width: 60ch;
+  font-size: clamp(1rem, 1.1vw, 1.05rem);
   line-height: 1.55;
 }
 
@@ -207,7 +207,7 @@ img[width][height] {
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.09em;
-  font-size: clamp(0.75rem, 1vw, 0.8125rem);
+  font-size: clamp(0.75rem, 0.9vw, 0.8rem);
   line-height: 1.35;
   font-weight: 700;
   color: rgb(252 211 77 / 0.95);
@@ -218,7 +218,7 @@ img[width][height] {
   flex-wrap: wrap;
   align-items: stretch;
   gap: 0.75rem;
-  margin-top: 0.35rem;
+  margin-top: 0.5rem;
 }
 
 .hero-actions-equal .button-equal {
@@ -686,6 +686,14 @@ body.has-mobile-cta {
 
   body.has-mobile-cta {
     padding-bottom: 0;
+  }
+
+  .page-hero .hero-actions {
+    flex-wrap: nowrap;
+  }
+
+  .page-hero .hero-actions-equal .button-equal {
+    flex: 1 1 0;
   }
 }
 
