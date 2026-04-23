@@ -1,9 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
+  initSkipLinkFocus();
   initPreferredPngImages();
   initLayoutInteractions();
+  initGalleryMediaPreferences();
   initGalleryFilters();
   initValidatedForms();
 });
+
+function initSkipLinkFocus() {
+  const skipLink = document.querySelector('.skip-link');
+  if (!(skipLink instanceof HTMLAnchorElement)) return;
+
+  skipLink.addEventListener('click', event => {
+    const targetId = skipLink.getAttribute('href');
+    if (!targetId?.startsWith('#')) return;
+
+    const target = document.querySelector(targetId);
+    if (!(target instanceof HTMLElement)) return;
+
+    event.preventDefault();
+    target.setAttribute('tabindex', '-1');
+    target.focus();
+    window.history.replaceState(null, '', targetId);
+  });
+}
 
 function initPreferredPngImages() {
   const svgImages = Array.from(document.querySelectorAll('img[src$=".svg"]'));
@@ -52,6 +72,13 @@ function initLayoutInteractions() {
       if (!(clickTarget instanceof Node)) return;
       if (!clickTarget.closest('.site-header')) closeMenu();
     });
+
+    const desktopMedia = window.matchMedia('(min-width: 52rem)');
+    const syncNavState = event => {
+      if (event.matches) closeMenu();
+    };
+    syncNavState(desktopMedia);
+    desktopMedia.addEventListener('change', syncNavState);
   }
 
   const ctaBar = document.createElement('aside');
@@ -104,6 +131,50 @@ function initGalleryFilters() {
   });
 }
 
+function initGalleryMediaPreferences() {
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const mediaContainers = Array.from(document.querySelectorAll('[data-gallery-media]'));
+  if (!mediaContainers.length) return;
+
+  const applyMotionPreference = mediaQuery => {
+    mediaContainers.forEach(container => {
+      const gifFigure = container.querySelector('figure');
+      const gifMedia = container.querySelector('[data-gallery-gif][data-gallery-static]');
+      const fallbackPair = container.querySelector('[data-gallery-fallback]');
+      if (!(gifMedia instanceof HTMLImageElement)) return;
+
+      const gifSrc = gifMedia.getAttribute('data-gallery-gif');
+      if (!gifSrc) return;
+
+      const showFallbackPair = () => {
+        if (fallbackPair instanceof HTMLElement) fallbackPair.hidden = false;
+        if (gifFigure instanceof HTMLElement) gifFigure.hidden = true;
+      };
+
+      const showGif = () => {
+        if (fallbackPair instanceof HTMLElement) fallbackPair.hidden = true;
+        if (gifFigure instanceof HTMLElement) gifFigure.hidden = false;
+      };
+
+      if (mediaQuery.matches) {
+        showFallbackPair();
+        return;
+      }
+
+      showGif();
+      gifMedia.removeEventListener('error', showFallbackPair);
+      gifMedia.addEventListener('error', showFallbackPair, { once: true });
+
+      if (gifMedia.src !== gifSrc) {
+        gifMedia.src = gifSrc;
+      }
+    });
+  };
+
+  applyMotionPreference(prefersReducedMotion);
+  prefersReducedMotion.addEventListener('change', applyMotionPreference);
+}
+
 function initValidatedForms() {
   const forms = Array.from(document.querySelectorAll('[data-validate-form]'));
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -111,14 +182,37 @@ function initValidatedForms() {
   const allowedUploadExtensions = /\.(jpe?g|png)$/i;
 
   const getErrorNode = input => {
+    const inputIdentifier = input.id || input.name;
+    if (!inputIdentifier) return null;
+
     let errorNode = input.parentElement?.querySelector('.field-error');
     if (!errorNode) {
       errorNode = document.createElement('p');
       errorNode.className = 'field-error';
-      errorNode.setAttribute('data-error-for', input.id || input.name);
+      errorNode.id = `${inputIdentifier}-error`;
+      errorNode.setAttribute('data-error-for', inputIdentifier);
       input.parentElement?.append(errorNode);
     }
     return errorNode;
+  };
+
+  const ensureBaseDescribedBy = input => {
+    if (input.dataset.baseDescribedByInitialized === 'true') return;
+    input.dataset.baseDescribedByInitialized = 'true';
+    input.dataset.baseDescribedBy = input.getAttribute('aria-describedby') || '';
+  };
+
+  const updateAriaDescribedBy = (input, includeErrorNode) => {
+    ensureBaseDescribedBy(input);
+    const baseIds = (input.dataset.baseDescribedBy || '').split(/\s+/).filter(Boolean);
+    const errorId = `${input.id || input.name}-error`;
+    const nextIds = includeErrorNode ? [...new Set([...baseIds, errorId])] : baseIds;
+
+    if (nextIds.length > 0) {
+      input.setAttribute('aria-describedby', nextIds.join(' '));
+    } else {
+      input.removeAttribute('aria-describedby');
+    }
   };
 
   const clearFieldError = input => {
@@ -126,6 +220,7 @@ function initValidatedForms() {
     if (errorNode) errorNode.textContent = '';
     input.classList.remove('is-invalid');
     input.removeAttribute('aria-invalid');
+    updateAriaDescribedBy(input, false);
   };
 
   const setFieldError = (input, message) => {
@@ -133,6 +228,7 @@ function initValidatedForms() {
     if (errorNode) errorNode.textContent = message;
     input.classList.add('is-invalid');
     input.setAttribute('aria-invalid', 'true');
+    updateAriaDescribedBy(input, true);
   };
 
   const validateInput = input => {
@@ -195,6 +291,8 @@ function initValidatedForms() {
         if (summary) {
           summary.hidden = false;
           summary.textContent = `Please correct ${invalidFields.length} field${invalidFields.length === 1 ? '' : 's'} before submitting.`;
+          summary.setAttribute('tabindex', '-1');
+          summary.focus();
         }
         invalidFields[0].focus();
         return;
@@ -222,6 +320,8 @@ function initValidatedForms() {
             form.hasAttribute('data-estimate-form')
               ? 'Thanks! Your estimate request was received. Our team will follow up shortly.'
               : 'Thanks! Your message has been sent. We will respond within one business day.';
+          successNode.setAttribute('tabindex', '-1');
+          successNode.focus();
         }
 
         form.reset();
@@ -229,6 +329,8 @@ function initValidatedForms() {
         if (summary) {
           summary.hidden = false;
           summary.textContent = 'We could not send your form right now. Please try again or call us directly.';
+          summary.setAttribute('tabindex', '-1');
+          summary.focus();
         }
       }
     });
