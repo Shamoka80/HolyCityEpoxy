@@ -248,11 +248,12 @@ img[width][height] {
 
 .button-primary {
   background: var(--accent);
-  color: #fff;
+  color: var(--text);
 }
 
 .button-primary:hover {
   background: var(--accent-dark);
+  color: #fff;
 }
 
 .button-secondary {
