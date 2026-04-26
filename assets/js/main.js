@@ -350,7 +350,7 @@ function initValidatedForms() {
       input.addEventListener('blur', () => validateInput(input));
     });
 
-    form.addEventListener('submit', async event => {
+    form.addEventListener('submit', event => {
       const invalidFields = fields.filter(input => !validateInput(input));
 
       if (invalidFields.length) {
@@ -380,36 +380,11 @@ function initValidatedForms() {
         summary.hidden = true;
         summary.innerHTML = '';
       }
-
-      event.preventDefault();
-      const formData = new FormData(form);
-
-      try {
-        const response = await fetch('/', {
-          method: 'POST',
-          body: formData
-        });
-
-        if (!response.ok) throw new Error('Request failed');
-
-        if (successNode) {
-          successNode.hidden = false;
-          successNode.textContent =
-            form.hasAttribute('data-estimate-form')
-              ? 'Thanks! Your estimate request was received. Our team will follow up shortly.'
-              : 'Thanks! Your message has been sent. We will respond within one business day.';
-          successNode.setAttribute('tabindex', '-1');
-          successNode.focus();
-        }
-
-        form.reset();
-      } catch (error) {
-        if (summary) {
-          summary.hidden = false;
-          summary.textContent = 'We could not send your form right now. Please try again or call us directly.';
-          summary.setAttribute('tabindex', '-1');
-          summary.focus();
-        }
+      // Keep native form submission for Netlify Forms processing.
+      // This preserves file uploads, thank-you redirects, and configured email notifications.
+      if (successNode) {
+        successNode.hidden = false;
+        successNode.textContent = 'Submitting your request...';
       }
     });
 
