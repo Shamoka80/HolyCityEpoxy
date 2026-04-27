@@ -245,8 +245,16 @@ function initGalleryMediaPreferences() {
 function initValidatedForms() {
   const forms = Array.from(document.querySelectorAll('[data-validate-form]'));
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneDigitsRegex = /^\d{10}$/;
   const allowedUploadMimeTypes = new Set(['image/jpeg', 'image/png']);
   const allowedUploadExtensions = /\.(jpe?g|png)$/i;
+  const normalizePhoneValue = rawValue => {
+    const digitsOnly = rawValue.replace(/\D/g, '');
+    if (digitsOnly.length === 11 && digitsOnly.startsWith('1')) {
+      return digitsOnly.slice(1);
+    }
+    return digitsOnly;
+  };
 
   const getErrorNode = input => {
     const inputIdentifier = input.id || input.name;
@@ -300,7 +308,9 @@ function initValidatedForms() {
 
   const validateInput = input => {
     clearFieldError(input);
-    const value = input.type === 'file' ? input.value : input.value.trim();
+    const trimmedValue = input.type === 'file' ? input.value : input.value.trim();
+    const value = input.type === 'tel' ? normalizePhoneValue(trimmedValue) : trimmedValue;
+    if (input.type === 'tel') input.value = value;
 
     if (input.required && !value) {
       setFieldError(input, 'This field is required.');
@@ -312,8 +322,8 @@ function initValidatedForms() {
       return false;
     }
 
-    if (input.type === 'tel' && value && !/^\d{10}$/.test(value)) {
-      setFieldError(input, 'Enter a 10-digit phone number using numbers only.');
+    if (input.type === 'tel' && value && !phoneDigitsRegex.test(value)) {
+      setFieldError(input, 'Enter a valid US phone number (10 digits, or 11 digits starting with 1).');
       return false;
     }
 

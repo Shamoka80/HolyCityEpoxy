@@ -40,6 +40,21 @@ Lightweight, static-first marketing site for a Charleston, SC residential epoxy 
 - Both forms submit to `/thank-you.html` for a lightweight confirmation flow.
 - No build step is required. Deploy directly to Netlify as a static site.
 
+## Manual QA: Phone Validation Matrix
+
+Phone input is normalized client-side by removing non-digits before validation/submission. A leading US country code `1` is accepted and normalized away, so submitted values are stored as a 10-digit number.
+
+| Example input | Normalized value | Expected |
+| --- | --- | --- |
+| `8437903344` | `8437903344` | Accept |
+| `(843) 790-3344` | `8437903344` | Accept |
+| `843-790-3344` | `8437903344` | Accept |
+| `+1 (843) 790-3344` | `8437903344` | Accept |
+| `18437903344` | `8437903344` | Accept |
+| `790-3344` | `7903344` | Reject (too short) |
+| `28437903344` | `28437903344` | Reject (11 digits must start with `1`) |
+| `843790334455` | `843790334455` | Reject (too long) |
+
 ## Secondary Lead Notification Channel (Netlify Forms + Relay)
 
 Netlify Forms remains the primary intake source of truth. A secondary relay can be configured so each successful form submission also notifies an external destination.

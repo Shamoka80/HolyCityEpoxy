@@ -74,8 +74,9 @@
                 <input id="contact-name" name="name" type="text" autocomplete="name" required />
               </label>
               <label for="contact-phone">Phone
-                <input id="contact-phone" name="phone" type="tel" autocomplete="tel" pattern="[0-9]{10}" inputmode="numeric" required />
+                <input id="contact-phone" name="phone" type="tel" autocomplete="tel" pattern="1?[0-9]{10}" inputmode="numeric" required aria-describedby="contact-phone-note" />
               </label>
+              <p id="contact-phone-note" class="form-note">Use 10 digits, or include leading 1 for US country code. Formatting characters are OK.</p>
               <label for="contact-email">Email
                 <input id="contact-email" name="email" type="email" autocomplete="email" required />
               </label>
