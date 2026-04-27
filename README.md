@@ -40,6 +40,86 @@ Lightweight, static-first marketing site for a Charleston, SC residential epoxy 
 - Both forms submit to `/thank-you.html` for a lightweight confirmation flow.
 - No build step is required. Deploy directly to Netlify as a static site.
 
+## Secondary Lead Notification Channel (Netlify Forms + Relay)
+
+Netlify Forms remains the primary intake source of truth. A secondary relay can be configured so each successful form submission also notifies an external destination.
+
+### Supported relay patterns
+1. **Option A (no code):** Netlify Forms notification webhook directly to Slack/Discord/email automation.
+2. **Option B (implemented here):** Netlify Function `netlify/functions/lead-notify.js` relays form submissions to a transactional provider (SendGrid or Postmark).
+
+### Option B flow
+1. Form submission is captured by Netlify Forms.
+2. Netlify Forms webhook calls `/.netlify/functions/lead-notify`.
+3. Function computes an idempotency key from submission ID + submission timestamp.
+4. Function relays the notification to SendGrid/Postmark.
+5. Function writes structured JSON logs for each relay attempt.
+6. Function triggers an alert webhook if relay failures reach **N** consecutive attempts for a form.
+
+### Required environment variables (Option B)
+- `LEAD_NOTIFY_PROVIDER`: `sendgrid` (default) or `postmark`.
+- `LEAD_NOTIFY_TO`: recipient email(s). For multiple SendGrid recipients, comma-separate values.
+- `LEAD_NOTIFY_FROM`: verified sender email.
+- `SENDGRID_API_KEY`: required when provider is SendGrid.
+- `POSTMARK_SERVER_TOKEN`: required when provider is Postmark.
+- `LEAD_NOTIFY_FAILURE_ALERT_THRESHOLD`: optional, defaults to `3`.
+- `LEAD_NOTIFY_ALERT_WEBHOOK_URL`: optional (Slack/Discord/webhook endpoint for failure alerts).
+
+### Netlify setup steps (Option B)
+1. Deploy this repository to Netlify.
+2. In Netlify UI, set the environment variables above.
+3. In **Site → Forms → Notifications**, create an **Outgoing webhook** for each form:
+   - `estimate-consultative-request`
+   - `contact-homeowner-request`
+4. Point webhook URL to:
+   - `https://<your-site-domain>/.netlify/functions/lead-notify`
+
+### Idempotency behavior
+- The function generates an idempotency key: `netlify:<submission_id>:<submitted_at>`.
+- The key is forwarded to the provider as `Idempotency-Key` and added to provider metadata/custom args.
+- Duplicate webhook calls with the same key are skipped in-process by the function's TTL cache.
+
+### Structured logging format
+Each relay attempt logs JSON with at least:
+- `status` (`success` or `failure`)
+- `destination`
+- `timestamp`
+- `formName`
+- `submissionId`
+- `idempotencyKey`
+
+Example success event:
+```json
+{
+  "event": "lead_notify_relay_attempt",
+  "status": "success",
+  "destination": "sendgrid:ops@example.com",
+  "timestamp": "2026-04-27T10:20:30.000Z",
+  "formName": "estimate-consultative-request"
+}
+```
+
+### Failure visibility
+- **Primary:** Netlify Function logs (`Site → Functions → lead-notify`).
+- **Secondary:** Netlify Forms submission logs confirm intake succeeded even when relay fails.
+- **Alerts:** `LEAD_NOTIFY_ALERT_WEBHOOK_URL` receives a payload after N consecutive failures per form.
+
+### Replay failed notifications
+1. Copy the failed submission payload from Netlify Forms/webhook logs.
+2. Re-submit it to the function endpoint:
+   ```bash
+   curl -X POST \
+     -H 'Content-Type: application/json' \
+     --data @failed-submission.json \
+     https://<your-site-domain>/.netlify/functions/lead-notify
+   ```
+3. Confirm a `200` response and a `status: success` structured log entry.
+
+### On-call ownership
+- **Owner:** Website operations owner (default: business owner/operator for Holy City Epoxy).
+- **Cadence:** Daily check of Forms + Function logs; immediate follow-up for any alert webhook message.
+- **Escalation:** If 3+ consecutive relay failures persist after replay, switch to Option A webhook-only fallback until provider credentials/config are fixed.
+
 ## Form Notifications Operations
 
 Use this runbook when form entries appear in Netlify but email notifications are missing, delayed, or inconsistent.
