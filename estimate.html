@@ -65,8 +65,8 @@
             id="estimate-form"
             class="stacked-form"
             name="estimate-consultative-request"
-            method="post"
-            action="/thank-you.html"
+            method="POST"
+            action="https://formspree.io/f/xjglblbd"
             enctype="multipart/form-data"
             data-estimate-form
             data-validate-form
@@ -205,6 +205,14 @@
                 <p id="photo-upload-note" class="form-note">
                   Upload JPG or PNG. Recommended photo size: 1200 × 800 pixels (3:2 landscape).
                 </p>
+
+                <label class="form-full" for="project-details">Message / Project Details
+                  <textarea
+                    id="project-details"
+                    name="project_details"
+                    placeholder="Share anything helpful about access, current condition, goals, or timeline details."
+                  ></textarea>
+                </label>
               </div>
             </fieldset>
 
