@@ -390,8 +390,7 @@ function initValidatedForms() {
         summary.hidden = true;
         summary.innerHTML = '';
       }
-      // Keep native form submission for Netlify Forms processing.
-      // This preserves file uploads, thank-you redirects, and configured email notifications.
+      // Keep native form submission so the browser handles the configured POST action and redirect.
       if (successNode) {
         successNode.hidden = false;
         successNode.textContent = 'Submitting your request...';
