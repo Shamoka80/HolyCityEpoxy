@@ -193,18 +193,49 @@ body.menu-open {
   background-image:
     linear-gradient(135deg, rgb(12 43 72 / 0.8), rgb(18 62 104 / 0.8) 50%, rgb(28 88 142 / 0.8)),
     url("../images/gallery/hero_bkgrd_1.png");
-  background-position: center, center;
+  background-position: center, bottom right;
   background-repeat: no-repeat, no-repeat;
-  background-size: cover, cover;
+  background-size: cover, contain;
   background-attachment: fixed, fixed;
 }
 
 .page-hero .layout-container {
-  min-height: clamp(20rem, 44vw, 23rem);
+  min-height: clamp(20rem, 46vw, 25rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: clamp(0.65rem, 1.1vw, 0.85rem);
+}
+
+@media (max-width: 80rem) {
+  .page-hero {
+    background-position: center, right bottom;
+    background-size: cover, contain;
+    background-attachment: scroll, scroll;
+  }
+}
+
+@media (max-width: 64rem) {
+  .page-hero {
+    background-position: center, center bottom;
+    background-size: cover, contain;
+  }
+
+  .page-hero .layout-container {
+    min-height: clamp(22rem, 60vw, 28rem);
+  }
+}
+
+@media (max-width: 48rem) {
+  .page-hero {
+    background-position: center, center bottom;
+    background-size: cover, 100% auto;
+    background-attachment: scroll, scroll;
+  }
+
+  .page-hero .layout-container {
+    min-height: clamp(23rem, 86vw, 31rem);
+  }
 }
 
 .page-hero h1 {
