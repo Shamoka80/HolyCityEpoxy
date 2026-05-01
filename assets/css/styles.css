@@ -192,7 +192,6 @@ body.menu-open {
   color: #fff;
   padding-block: 0;
   overflow: hidden;
-  background: linear-gradient(135deg, rgb(12 43 72 / 0.8), rgb(18 62 104 / 0.8) 50%, rgb(28 88 142 / 0.8));
   background-color: #123e68;
 }
 
