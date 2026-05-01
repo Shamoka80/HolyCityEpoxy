@@ -305,22 +305,25 @@ body.menu-open {
 }
 
 .button-primary {
+  border-color: rgb(255 255 255 / 0.3);
   background: var(--accent);
   color: #fff;
 }
 
 .button-primary:hover {
+  border-color: rgb(255 255 255 / 0.45);
   background: var(--accent-dark);
   color: #fff;
 }
 
 .button-secondary {
-  border-color: rgb(255 255 255 / 0.75);
+  border-color: rgb(18 62 104 / 0.45);
   color: var(--primary);
   background: #fff;
 }
 
 .button-secondary:hover {
+  border-color: rgb(18 62 104 / 0.6);
   background: #f1f5f9;
 }
 
