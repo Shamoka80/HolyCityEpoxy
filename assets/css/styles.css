@@ -195,7 +195,8 @@ body.menu-open {
     url("../images/branding/holy-city-epoxy-hero-bkgrd.png");
   background-position: center, center;
   background-repeat: no-repeat, no-repeat;
-  background-size: cover, cover;
+  background-size: cover, contain;
+  background-color: #123e68;
   background-attachment: fixed, fixed;
 }
 
