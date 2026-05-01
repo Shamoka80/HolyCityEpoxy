@@ -197,11 +197,17 @@ body.menu-open {
   background-repeat: no-repeat, no-repeat;
   background-size: cover, contain;
   background-color: #123e68;
-  background-attachment: fixed, fixed;
+  background-attachment: scroll, scroll;
+}
+
+@media (min-width: 64rem) {
+  .page-hero {
+    background-attachment: fixed, fixed;
+  }
 }
 
 .page-hero .layout-container {
-  min-height: clamp(20rem, 44vw, 23rem);
+  min-height: clamp(14rem, 30vw, 18rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
