@@ -188,18 +188,42 @@ body.menu-open {
 }
 
 .page-hero {
+  position: relative;
   color: #fff;
   padding-block: 0;
-  background-image:
-    linear-gradient(135deg, rgb(12 43 72 / 0.8), rgb(18 62 104 / 0.8) 50%, rgb(28 88 142 / 0.8)),
-    url("../images/gallery/hero_bkgrd_1.png");
-  background-position: center, bottom right;
-  background-repeat: no-repeat, no-repeat;
-  background-size: cover, contain;
-  background-attachment: fixed, fixed;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgb(12 43 72 / 0.8), rgb(18 62 104 / 0.8) 50%, rgb(28 88 142 / 0.8));
+}
+
+.home-hero {
+  background-color: #123e68;
+}
+
+.home-hero .hero-bg-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.home-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(135deg, rgb(12 43 72 / 0.82), rgb(18 62 104 / 0.74) 50%, rgb(28 88 142 / 0.7));
+  pointer-events: none;
 }
 
 .page-hero .layout-container {
+  position: relative;
+  z-index: 2;
   min-height: clamp(20rem, 46vw, 25rem);
   display: flex;
   flex-direction: column;
@@ -207,32 +231,13 @@ body.menu-open {
   gap: clamp(0.65rem, 1.1vw, 0.85rem);
 }
 
-@media (max-width: 80rem) {
-  .page-hero {
-    background-position: center, right bottom;
-    background-size: cover, contain;
-    background-attachment: scroll, scroll;
-  }
-}
-
 @media (max-width: 64rem) {
-  .page-hero {
-    background-position: center, center bottom;
-    background-size: cover, contain;
-  }
-
   .page-hero .layout-container {
     min-height: clamp(22rem, 60vw, 28rem);
   }
 }
 
 @media (max-width: 48rem) {
-  .page-hero {
-    background-position: center, center bottom;
-    background-size: cover, 100% auto;
-    background-attachment: scroll, scroll;
-  }
-
   .page-hero .layout-container {
     min-height: clamp(23rem, 86vw, 31rem);
   }
