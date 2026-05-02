@@ -202,12 +202,11 @@ body.menu-open {
       rgba(18, 62, 104, 0.74) 50%,
       rgba(28, 88, 142, 0.70)
     ),
-    url("../images/gallery/hero_bkgrd_1.png"),
     url("../images/gallery/hero_bkgrd_1.png");
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-position: center center, center center, center center;
-  background-size: cover, contain, cover;
-  background-attachment: scroll, scroll, scroll;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center center, center center;
+  background-size: cover, cover;
+  background-attachment: scroll, scroll;
 }
 
 .page-hero .layout-container {
