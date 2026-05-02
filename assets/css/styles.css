@@ -172,9 +172,11 @@ body.menu-open {
   text-decoration: none;
   color: var(--muted);
   font-weight: 600;
+  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   display: block;
   padding: 0.5rem 0.6rem;
+  background: #fff;
 }
 
 .site-nav a:hover {
@@ -199,23 +201,8 @@ body.menu-open {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../images/gallery/hero_bkgrd_1.png");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  filter: blur(18px);
-  transform: scale(1.06);
-  opacity: 0.55;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.home-hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgb(12 43 72 / 0.82), rgb(18 62 104 / 0.72) 50%, rgb(28 88 142 / 0.7));
-  z-index: 1;
+  background: linear-gradient(135deg, rgb(7 28 49 / 0.78), rgb(12 43 72 / 0.72) 50%, rgb(18 62 104 / 0.66));
+  z-index: 2;
   pointer-events: none;
 }
 
@@ -226,28 +213,40 @@ body.menu-open {
   height: 100%;
   object-fit: contain;
   object-position: center center;
-  z-index: 2;
+  z-index: 1;
   pointer-events: none;
 }
 
 .page-hero .layout-container {
   position: relative;
   z-index: 3;
-  min-height: clamp(28rem, 42vw, 36rem);
+  min-height: clamp(20rem, 44vw, 23rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: clamp(0.65rem, 1.1vw, 0.85rem);
 }
 
+.home-hero .layout-container {
+  min-height: clamp(28rem, 42vw, 36rem);
+}
+
 @media (max-width: 64rem) {
   .page-hero .layout-container {
+    min-height: clamp(18rem, 52vw, 22rem);
+  }
+
+  .home-hero .layout-container {
     min-height: clamp(22rem, 60vw, 28rem);
   }
 }
 
 @media (max-width: 48rem) {
   .page-hero .layout-container {
+    min-height: clamp(17rem, 58vw, 20rem);
+  }
+
+  .home-hero .layout-container {
     min-height: clamp(23rem, 86vw, 31rem);
   }
 }
@@ -317,7 +316,7 @@ body.menu-open {
 }
 
 .button-secondary {
-  border-color: rgb(18 62 104 / 0.45);
+  border-color: rgb(18 62 104 / 0.65);
   color: var(--primary);
   background: #fff;
 }
@@ -329,7 +328,7 @@ body.menu-open {
 
 .content-section .button-secondary {
   color: var(--primary);
-  border-color: rgb(18 62 104 / 0.35);
+  border-color: rgb(18 62 104 / 0.55);
   background: #fff;
 }
 
@@ -666,7 +665,7 @@ input::file-selector-button {
 
 .mobile-cta .button-secondary {
   color: var(--primary);
-  border-color: rgb(18 62 104 / 0.35);
+  border-color: rgb(18 62 104 / 0.55);
 }
 
 .mobile-cta .button-secondary:hover {
