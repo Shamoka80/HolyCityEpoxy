@@ -197,23 +197,21 @@ body.menu-open {
   background-color: #123e68;
 }
 
-.home-hero::before {
+.page-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../images/gallery/hero_bkgrd_1.png") center center / contain no-repeat;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.page-hero::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, rgb(7 28 49 / 0.78), rgb(12 43 72 / 0.72) 50%, rgb(18 62 104 / 0.66));
   z-index: 2;
-  pointer-events: none;
-}
-
-.home-hero .hero-bg-image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center center;
-  z-index: 1;
   pointer-events: none;
 }
 
@@ -227,27 +225,16 @@ body.menu-open {
   gap: clamp(0.65rem, 1.1vw, 0.85rem);
 }
 
-.home-hero .layout-container {
-  min-height: clamp(28rem, 42vw, 36rem);
-}
 
 @media (max-width: 64rem) {
   .page-hero .layout-container {
     min-height: clamp(18rem, 52vw, 22rem);
-  }
-
-  .home-hero .layout-container {
-    min-height: clamp(22rem, 60vw, 28rem);
   }
 }
 
 @media (max-width: 48rem) {
   .page-hero .layout-container {
     min-height: clamp(17rem, 58vw, 20rem);
-  }
-
-  .home-hero .layout-container {
-    min-height: clamp(23rem, 86vw, 31rem);
   }
 }
 
