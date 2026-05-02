@@ -14,20 +14,39 @@
 
   const PROJECT_TYPE_RATE_TABLE = {
     garage: { lowPerSqFt: 8, highPerSqFt: 12 },
-    porch: { lowPerSqFt: 7, highPerSqFt: 10.5 },
-    pool_deck: { lowPerSqFt: 8.5, highPerSqFt: 13 }
+    porch_patio: { lowPerSqFt: 7.5, highPerSqFt: 11 },
+    pool_deck: { lowPerSqFt: 9, highPerSqFt: 14 },
+    commercial: { lowPerSqFt: 8.5, highPerSqFt: 16 },
+    other_unsure: { lowPerSqFt: 7, highPerSqFt: 14.5 }
   };
 
   const PRESET_SIZE_SQFT_TABLE = {
     garage_1_car: 240,
     garage_2_car: 440,
-    garage_3_car: 640,
-    porch_small: 150,
-    porch_medium: 260,
-    porch_large: 420,
-    pool_deck_small: 320,
-    pool_deck_medium: 520,
-    pool_deck_large: 760
+    garage_workbench: 520,
+    workshop: 600,
+    home_gym: 300,
+    pool_deck: 420,
+    pool_deck_covered: 520,
+    pool_lounge_area: 680,
+    front_entry_porch: 140,
+    covered_porch: 240,
+    back_porch: 320,
+    patio: 380,
+    walkway: 180,
+    auto_shop: 1400,
+    service_bay: 1000,
+    showroom: 1800,
+    warehouse: 3000,
+    light_commercial: 2200
+  };
+
+  const PROJECT_TYPE_PRESET_TABLE = {
+    garage: ['garage_1_car', 'garage_2_car', 'garage_workbench', 'workshop', 'home_gym'],
+    pool_deck: ['pool_deck', 'pool_deck_covered', 'pool_lounge_area'],
+    porch_patio: ['front_entry_porch', 'covered_porch', 'back_porch', 'patio', 'walkway'],
+    commercial: ['auto_shop', 'service_bay', 'showroom', 'warehouse', 'light_commercial'],
+    other_unsure: Object.keys(PRESET_SIZE_SQFT_TABLE)
   };
 
   // Finish adjustments use multiplicative factors on base rates.
@@ -51,7 +70,7 @@
   };
 
   const ESTIMATE_DISCLAIMER_TEXT =
-    'This is a preliminary budget range, not a final or binding quote. Final pricing is confirmed after project review, surface evaluation, and measurements.';
+    'Final pricing depends on square footage, concrete condition, surface preparation, repairs, moisture conditions, and selected coating system.';
   const ESTIMATE_DISCLAIMER_VERSION = 'v2-2026-04-22';
   const MINIMUM_THRESHOLD_MESSAGE =
     'Most projects we take on begin at $1,500. Based on your selections, your project may be below our standard minimum. We\'re happy to review options and confirm scope with you.';
@@ -150,6 +169,7 @@
 
   const resultNode = form.querySelector('[data-estimate-output]');
   const previewButton = form.querySelector('[data-estimate-preview]');
+  const presetOptions = fields.presetSize ? Array.from(fields.presetSize.options).filter(option => option.value) : [];
 
   const hiddenFields = {
     estimateRangeLow: form.querySelector('[data-estimate-range-low]'),
@@ -200,6 +220,24 @@
       if (!isPresetMode) fields.presetSize.value = '';
       fields.presetSize.setCustomValidity('');
     }
+  };
+
+
+  const updatePresetOptionsByProjectType = () => {
+    if (!fields.presetSize) return;
+    const projectType = fields.projectType?.value || '';
+    const allowedPresets = projectType ? PROJECT_TYPE_PRESET_TABLE[projectType] || [] : [];
+    const currentPreset = fields.presetSize.value;
+    let selectedIsAllowed = false;
+
+    presetOptions.forEach(option => {
+      const isAllowed = allowedPresets.includes(option.value);
+      option.hidden = !!projectType && !isAllowed;
+      option.disabled = !!projectType && !isAllowed;
+      if (option.value === currentPreset && isAllowed) selectedIsAllowed = true;
+    });
+
+    if (currentPreset && !selectedIsAllowed) fields.presetSize.value = '';
   };
 
   const setHiddenFields = payload => {
@@ -265,6 +303,10 @@
       if (!values.presetSize) addError(fields.presetSize, 'Select a preset size option.');
       if (values.presetSize && !PRESET_SIZE_SQFT_TABLE[values.presetSize]) {
         addError(fields.presetSize, 'Choose a valid preset size option.');
+      }
+      const allowedPresets = PROJECT_TYPE_PRESET_TABLE[values.projectType] || [];
+      if (values.presetSize && values.projectType && !allowedPresets.includes(values.presetSize)) {
+        addError(fields.presetSize, 'Select a preset size that matches the selected project type.');
       }
     }
 
@@ -364,7 +406,7 @@
 
   const renderEstimateResult = ({ rangeDisplay, thresholdTriggered, travelPolicy }) => {
     const lines = [
-      `Estimated budget range: ${rangeDisplay}.`,
+      `Estimated project range: ${rangeDisplay}.`,
       ESTIMATE_DISCLAIMER_TEXT,
       `Estimated distance from ${SERVICE_AREA_CENTER_ZIP}: ${travelPolicy.distanceLabel}.`,
       `${travelPolicy.label}: ${travelPolicy.details}`,
@@ -413,8 +455,11 @@
     const lowRate = projectRates.lowPerSqFt * finishFactor * surfaceFactor * timelineFactor;
     const highRate = projectRates.highPerSqFt * finishFactor * surfaceFactor * timelineFactor;
 
+    const environmentHighFactor = values.environmentType === 'outdoor' ? 1.06 : 1;
+    const complexityHighFactor = values.projectType === 'commercial' || values.projectType === 'other_unsure' ? 1.08 : 1.03;
+    const uncertaintyFactor = values.sizeMode === 'custom' ? 1.02 : 1;
     const preliminaryLow = Math.round(lowRate * squareFeet);
-    const preliminaryHigh = Math.round(highRate * squareFeet);
+    const preliminaryHigh = Math.round(highRate * squareFeet * environmentHighFactor * complexityHighFactor * uncertaintyFactor);
 
     const travelPolicy = resolveTravelPolicy(values.zipCode);
     const thresholdTriggered = preliminaryHigh < MINIMUM_PROJECT_THRESHOLD;
@@ -456,8 +501,14 @@
     calculateEstimate(true);
   });
 
+  fields.projectType?.addEventListener('change', () => {
+    updatePresetOptionsByProjectType();
+    calculateEstimate(false);
+  });
+
   fields.sizeMode?.addEventListener('change', () => {
     setCustomSizeModeState();
+    updatePresetOptionsByProjectType();
     calculateEstimate(false);
   });
 
@@ -476,6 +527,7 @@
 
   clearEstimateState();
   setCustomSizeModeState();
+  updatePresetOptionsByProjectType();
 
   // These constants remain intentionally explicit for business-edit visibility.
   void SERVICE_AREA_CENTER_ZIP;

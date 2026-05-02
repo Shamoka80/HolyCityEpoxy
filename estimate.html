@@ -81,8 +81,10 @@
                   <select id="project-type" name="project_type" required>
                     <option value="">Select one</option>
                     <option value="garage">Garage</option>
-                    <option value="porch">Porch</option>
+                    <option value="porch_patio">Porch / Patio</option>
                     <option value="pool_deck">Pool Deck</option>
+                    <option value="commercial">Commercial</option>
+                    <option value="other_unsure">Other / Unsure</option>
                   </select>
                 </label>
 
@@ -95,19 +97,29 @@
                 </label>
 
                 <label for="preset-size">Preset Size
-                  <select id="preset-size" name="preset_size" required>
+                  <select id="preset-size" name="preset_size" required aria-describedby="preset-size-note">
                     <option value="">Select one</option>
                     <option value="garage_1_car">1-Car Garage</option>
                     <option value="garage_2_car">2-Car Garage</option>
-                    <option value="garage_3_car">3-Car Garage</option>
-                    <option value="porch_small">Small Porch</option>
-                    <option value="porch_medium">Medium Porch</option>
-                    <option value="porch_large">Large Porch</option>
-                    <option value="pool_deck_small">Small Pool Deck</option>
-                    <option value="pool_deck_medium">Medium Pool Deck</option>
-                    <option value="pool_deck_large">Large Pool Deck</option>
+                    <option value="garage_workbench">Garage + Workbench</option>
+                    <option value="workshop">Workshop</option>
+                    <option value="home_gym">Home Gym</option>
+                    <option value="pool_deck">Pool Deck</option>
+                    <option value="pool_deck_covered">Covered Pool Deck</option>
+                    <option value="pool_lounge_area">Pool Lounge Area</option>
+                    <option value="front_entry_porch">Front Entry Porch</option>
+                    <option value="covered_porch">Covered Porch</option>
+                    <option value="back_porch">Back Porch</option>
+                    <option value="patio">Patio</option>
+                    <option value="walkway">Walkway</option>
+                    <option value="auto_shop">Auto Shop</option>
+                    <option value="service_bay">Service Bay</option>
+                    <option value="showroom">Showroom</option>
+                    <option value="warehouse">Warehouse</option>
+                    <option value="light_commercial">Light Commercial</option>
                   </select>
                 </label>
+                <p id="preset-size-note" class="form-note">Presets update based on the selected project type.</p>
 
                 <label for="custom-square-feet">Custom Square Footage
                   <input
